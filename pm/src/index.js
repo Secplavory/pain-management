@@ -5,11 +5,6 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 // Above are buildin dependency when project init.
 
-
-
-
-// Above are programmers' customize
-
 ReactDOM.render(
   <React.StrictMode>
     <App />

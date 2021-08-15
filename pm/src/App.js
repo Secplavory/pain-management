@@ -1,7 +1,9 @@
+import Cnavbar from './components/Cnavbar'
+
 function App() {
   return (
     <div className="App">
-      <h2>正在建立</h2>
+      <Cnavbar />
     </div>
   );
 }
