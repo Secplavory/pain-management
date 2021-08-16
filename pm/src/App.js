@@ -1,9 +1,15 @@
 import Cnavbar from './components/Cnavbar'
+import {BrowserRouter as Router, Switch} from 'react-router-dom'
 
 function App() {
   return (
     <div className="App">
-      <Cnavbar />
+      <Router>
+        <Cnavbar />
+        <Switch>
+
+        </Switch>
+      </Router>
     </div>
   );
 }

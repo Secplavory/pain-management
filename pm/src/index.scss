@@ -1,13 +1,12 @@
 // 測試bootstrap改顏色機制\
-$greanColor: #00ffc8;
-
-$navbar-dark-color:                 rgba($greanColor, .55) !default;
-$navbar-dark-hover-color:           rgba($greanColor, .75) !default;
-$navbar-dark-active-color:          $greanColor !default;
-$navbar-dark-disabled-color:        rgba($greanColor, .25) !default;
-$navbar-dark-toggler-border-color:  rgba($greanColor, .1) !default;
+$dark-color: #ffffff;
+$navbar-dark-color:                 rgba($dark-color, .55) !default;
+$navbar-dark-hover-color:           rgba($dark-color, .75) !default;
+$navbar-dark-active-color:          $dark-color !default;
+$navbar-dark-disabled-color:        rgba($dark-color, .25) !default;
+$navbar-dark-toggler-border-color:  rgba($dark-color, .1) !default;
 $navbar-dark-brand-hover-color:     $navbar-dark-hover-color !default;
 // 以上修改navbar內容顏色
-$primary: rgb(55, 0, 144) !default;
+
 
 @import "/node_modules/bootstrap/scss/bootstrap.scss";
