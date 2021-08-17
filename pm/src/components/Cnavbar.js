@@ -27,10 +27,10 @@ function Cnavbar(props) {
       <Navbar.Collapse>
         <Nav>
           <NavItem aria-controls="navbar-nav-collapse">
-            <Cnavlink path="/painrecord" setNavExpanded={setNavExpanded} text="疼痛紀錄" className="fs-5"/>
+            <Cnavlink path="/painManage" setNavExpanded={setNavExpanded} text="疼痛紀錄" className="fs-5"/>
           </NavItem>
           <NavItem aria-controls="navbar-nav-collapse">
-            <Cnavlink path="/dietrecord" setNavExpanded={setNavExpanded} text="飲食紀錄" className="fs-5"/>
+            <Cnavlink path="/dietManage" setNavExpanded={setNavExpanded} text="飲食紀錄" className="fs-5"/>
           </NavItem>
         </Nav>
       </Navbar.Collapse>
