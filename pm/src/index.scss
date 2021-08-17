@@ -7,6 +7,9 @@ $navbar-dark-disabled-color:        rgba($dark-color, .25) !default;
 $navbar-dark-toggler-border-color:  rgba($dark-color, .1) !default;
 $navbar-dark-brand-hover-color:     $navbar-dark-hover-color !default;
 // 以上修改navbar內容顏色
-
+.pt-6{
+    padding-top: 4rem !important;
+}
+// 以上新增bootstrap樣式
 
 @import "/node_modules/bootstrap/scss/bootstrap.scss";
