@@ -18,10 +18,10 @@ function Cnavlink(props) {
   )
 }
 
-function Cnavbar() {
+function Cnavbar(props) {
   const [navExpanded, setNavExpanded] = useState(false)
   return (
-    <Navbar fixed="top" expand="lg" bg="dark" variant="dark" className="px-3" onToggle={setNavExpanded} expanded={navExpanded}>
+    <Navbar id={props.id} sticky="top" expand="lg" bg="dark" variant="dark" className="px-3" onToggle={setNavExpanded} expanded={navExpanded}>
       <NavbarBrand href="/" className="fs-3">疼痛管理</NavbarBrand>
       <Navbar.Toggle />
       <Navbar.Collapse>
