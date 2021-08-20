@@ -21,16 +21,16 @@ function Cnavlink(props) {
 function Cnavbar(props) {
   const [navExpanded, setNavExpanded] = useState(false)
   return (
-    <Navbar id={props.id} fixed="top" expand="lg" bg="dark" variant="dark" className="px-3" onToggle={setNavExpanded} expanded={navExpanded}>
-      <NavbarBrand href="/" className="fs-3">疼痛管理</NavbarBrand>
+    <Navbar id={props.id} fixed="sticky" expand="sm" bg="dark" variant="dark" className="px-3" onToggle={setNavExpanded} expanded={navExpanded}>
+      <NavbarBrand href="/" className="fs-2 me-5">疼痛管理</NavbarBrand>
       <Navbar.Toggle />
       <Navbar.Collapse>
         <Nav>
-          <NavItem aria-controls="navbar-nav-collapse">
-            <Cnavlink path="/painManage" setNavExpanded={setNavExpanded} text="疼痛紀錄" className="fs-5"/>
+          <NavItem>
+            <Cnavlink path="/painManage" setNavExpanded={setNavExpanded} text="疼痛紀錄" className="fs-4 mx-2"/>
           </NavItem>
-          <NavItem aria-controls="navbar-nav-collapse">
-            <Cnavlink path="/dietManage" setNavExpanded={setNavExpanded} text="飲食紀錄" className="fs-5"/>
+          <NavItem>
+            <Cnavlink path="/dietManage" setNavExpanded={setNavExpanded} text="飲食紀錄" className="fs-4 mx-2"/>
           </NavItem>
         </Nav>
       </Navbar.Collapse>

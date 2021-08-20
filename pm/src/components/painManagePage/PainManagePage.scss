@@ -1,0 +1,14 @@
+#PainCanvas{
+    display: flex;
+    height: calc(100% - 3vw);
+    .recordOperator{
+        width: 25%;
+        h2{
+            text-align: center;
+        }
+    }
+    canvas{
+        width: 75%;
+        height: 100%
+    }
+}

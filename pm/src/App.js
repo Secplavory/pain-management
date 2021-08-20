@@ -8,9 +8,9 @@ import PainManagePage from './components/painManagePage/PainManagePage'
 
 function App() {
   return (
-    <div className="App pt-6">
+    <div className="App">
       <Router>
-        <Cnavbar id="navbar" />
+        <Cnavbar id="Navbar" />
         <Switch>
           <Route exact path="/">
             <HomePage />
