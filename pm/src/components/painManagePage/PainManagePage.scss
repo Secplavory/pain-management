@@ -1,14 +1,22 @@
 #PainCanvas{
-    display: flex;
-    height: calc(100% - 3vw);
-    .recordOperator{
-        width: 25%;
-        h2{
-            text-align: center;
-        }
-    }
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 99.9%;
     canvas{
-        width: 75%;
-        height: 100%
+        position: absolute;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -99;
+    }
+    footer{
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        height: 15rem;
+        background-color: rgba(230,230,230,1);
+        border-top-left-radius: 1rem;
+        border-top-right-radius: 1rem;
     }
 }

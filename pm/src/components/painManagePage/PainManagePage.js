@@ -10,19 +10,23 @@ function PainManagePage() {
     const camera = new  THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
     const renderer = new THREE.WebGLRenderer();
     const canvas = document.getElementById("PainCanvas");
-    renderer.setSize(canvas.clientWidth*0.75, canvas.clientHeight);
-    canvas.appendChild(renderer.domElement)
-    camera.position.set(0, 0, 10)
-    const directionalLight = new THREE.DirectionalLight( 0xffffff, 1 );
+    renderer.setSize(canvas.clientWidth, canvas.clientHeight);
+    renderer.setClearColor('white', 0.3);
+    canvas.appendChild(renderer.domElement);
+    camera.position.set(3,2,5);
+    const directionalLight = new THREE.DirectionalLight( 0xffffff, 0.6 );
     scene.add(directionalLight)
     const controls = new OrbitControls(camera, renderer.domElement);
+    controls.enabled = false;
     controls.update();
 
     const loader = new GLTFLoader();
     loader.load(
       'male_body_base_mesh/scene.gltf',
       function(gltf){
-        scene.add(gltf.scene);
+        var body = gltf.scene;
+        body.position.set(0, 1.2, 0);
+        scene.add(body);
       }
     )
 
@@ -40,9 +44,7 @@ function PainManagePage() {
 
   return (
     <div id="PainCanvas">
-      <div className="recordOperator">
-        <h2>疼痛紀錄功能選單</h2>
-      </div>
+      <footer></footer>
     </div>
   );
 }
