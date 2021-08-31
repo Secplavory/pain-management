@@ -1,4 +1,7 @@
 .App{
     overflow: hidden;
     height: calc(100vh);
+    #Navbar{
+        z-index: 99;
+    }
 }
