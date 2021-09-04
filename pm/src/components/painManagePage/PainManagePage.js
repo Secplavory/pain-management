@@ -4,13 +4,33 @@ import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls'
 import {GLTFLoader} from 'three/examples/jsm/loaders/GLTFLoader'
 import {useEffect, useState} from 'react'
 
+var showRecord = false;
+
 function PainManagePage() {
   const canvasContent = CanvasInit();
   OnCanvasResize(canvasContent);
-
+  const [recordClassName,setRecordClassName] = useState("record");
+  const [footerClassName,setFooterClassName] = useState("");
+  function showRecordMenu(){
+    if(showRecord == false){
+      setRecordClassName("record show");
+      setFooterClassName(" show");
+      showRecord = true;
+    }else{
+      setRecordClassName("record");
+      setFooterClassName("");
+      showRecord = false;
+    }
+  }
   return (
     <div id="PainCanvas">
-      <footer></footer>
+      <div className={recordClassName}>
+        <div className="top">+</div>
+        <div className="bottom">紀錄</div>
+      </div>
+      <footer className={footerClassName}>
+        <div className="trigger" onClick={showRecordMenu}></div>
+      </footer>
     </div>
   );
 }
