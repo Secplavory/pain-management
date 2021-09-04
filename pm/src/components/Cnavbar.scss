@@ -1,0 +1,37 @@
+#Navbar{
+    position: relative;
+    top: -5px;
+    width: 100%;
+    padding: 0 0 0 1rem;
+    margin-left: 0;
+    margin-right: 0;
+    .home{
+        svg{
+            color: rgba(255, 255, 255, 0.6);
+            width: 25px;
+            height: 25px;
+        }
+    }
+    .account{
+        svg{
+            color: rgba(255, 255, 255, 0.6);
+            width: 30px;
+            height: 30px;
+        }
+    }
+    .navbar-toggler{
+        border: none;
+        position: relative;
+        top: 1.5px;
+        &:focus{
+            box-shadow: 0 0 0 0rem;
+        }
+    }
+    div.right{
+        position: relative;
+        top: 1.5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}

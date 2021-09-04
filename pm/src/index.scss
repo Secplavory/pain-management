@@ -11,3 +11,7 @@ $navbar-dark-brand-hover-color:     $navbar-dark-hover-color !default;
 // 以上新增bootstrap樣式
 
 @import "/node_modules/bootstrap/scss/bootstrap.scss";
+
+body{
+    overflow: hidden;
+}

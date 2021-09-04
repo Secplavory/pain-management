@@ -5,6 +5,7 @@ import Cnavbar from './components/Cnavbar'
 import HomePage from './components/homePage/HomePage'
 import DietManagePage from './components/dietManagePage/DietManagePage'
 import PainManagePage from './components/painManagePage/PainManagePage'
+import Login from './components/Login.js'
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
             <DietManagePage />
           </Route>
         </Switch>
+        <Login />
       </Router>
     </div>
   );
