@@ -22,16 +22,18 @@ function Login() {
             <button>完成送出</button>
         </div>
         <div className="notice">
-            <tbody>
-                <tr>
-                    <td className="td_title">注意事項：</td>
-                    <td>請先登入姓名、性別、年齡之後，才可以記錄哦！</td>
-                </tr>
-                <tr>
-                    <td className="td_title">服務電話：</td>
-                    <td>09123123132</td>
-                </tr>               
-            </tbody>
+            <table>
+                <tbody>
+                    <tr>
+                        <td className="td_title">注意事項：</td>
+                        <td>請先登入姓名、性別、年齡之後，才可以記錄哦！</td>
+                    </tr>
+                    <tr>
+                        <td className="td_title">服務電話：</td>
+                        <td>09123123132</td>
+                    </tr>  
+                </tbody>
+            </table>
 
         </div>
       </div>

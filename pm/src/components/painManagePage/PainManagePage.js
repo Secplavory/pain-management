@@ -3,6 +3,8 @@ import * as THREE from 'three'
 import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls'
 import {GLTFLoader} from 'three/examples/jsm/loaders/GLTFLoader'
 import {useEffect, useState} from 'react'
+import ReactEcharts from 'echarts-for-react'
+import { AiOutlineSearch } from "react-icons/ai";
 
 var showRecord = false;
 
@@ -11,6 +13,27 @@ function PainManagePage() {
   OnCanvasResize(canvasContent);
   const [recordClassName,setRecordClassName] = useState("record");
   const [footerClassName,setFooterClassName] = useState("");
+  const [formState, setFormState] = useState("")
+  const options = {
+    grid: { top: 50, right: 18, bottom: 24, left: 48 },
+    xAxis: {
+      type: 'category',
+      data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+    },
+    yAxis: {
+      type: 'value',
+    },
+    series: [
+      {
+        data: [820, 932, 901, 934, 1290, 1330, 1320],
+        type: 'line',
+        smooth: true,
+      },
+    ],
+    tooltip: {
+      trigger: 'axis',
+    },
+  };
   function showRecordMenu(){
     if(showRecord == false){
       setRecordClassName("record show");
@@ -22,6 +45,13 @@ function PainManagePage() {
       showRecord = false;
     }
   }
+  function filterButton(e){
+    var choiceButton = document.querySelectorAll(".choice a");
+    choiceButton.forEach(ele=>{
+      ele.classList.remove("active");
+    });
+    e.target.classList.add("active");
+  }
   return (
     <div id="PainCanvas">
       <div className={recordClassName}>
@@ -30,6 +60,67 @@ function PainManagePage() {
       </div>
       <footer className={footerClassName}>
         <div className="trigger" onClick={showRecordMenu}></div>
+        <div className="pain_des">
+          <div className="first">
+            <div><span>最痛部位</span></div>
+            <div><span>疼痛等級</span></div>
+          </div>
+          <div className="second">
+            <div className="title">
+              <span><AiOutlineSearch />最近歷史紀錄/查詢</span>
+              <span className="right">疼痛強度</span>
+            </div>
+            <ReactEcharts className={formState} option={options} />
+            <div className="choice">
+              <a className="active" onClick={filterButton}>1週</a>
+              <a onClick={filterButton}>1個月</a>
+              <a onClick={filterButton}>3個月</a>
+              <a onClick={filterButton}>6個月</a>
+              <a onClick={filterButton}>1年</a>
+            </div>
+          </div>
+          <div className="third">
+            <div className="block">
+              <div>
+                <img src="clock.jpg" />
+              </div>
+              <span>日期</span>    
+            </div>
+            <div className="block">
+              <div>
+                
+              </div>
+              <span>部位名稱</span>
+            </div>
+            <div className="block">
+              <div>
+                <img src="clock.jpg" />
+              </div>
+              <span>症狀</span>
+            </div>
+            <div className="block">
+              <div>
+                <img src="clock.jpg" />   
+              </div>
+              <span>時間</span>
+            </div>
+          </div>
+          <div className="forth">
+            <table>
+              <tbody>
+                <tr>
+                    <td className="td_title">持續時間：</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td className="td_title">其他描述：</td>
+                    <td></td>
+                </tr>  
+              </tbody>
+            </table>
+          </div>
+        </div>
+
       </footer>
     </div>
   );

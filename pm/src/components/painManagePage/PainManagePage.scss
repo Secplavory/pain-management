@@ -38,7 +38,7 @@
         }
     }
     .record.show {
-        bottom: 18.5rem;
+        bottom: 24.5rem;
         transition: all 0.5s;
     }
     footer {
@@ -51,7 +51,7 @@
         border-top-left-radius: 1rem;
         border-top-right-radius: 1rem;
         transition: all 0.5s;
-        .trigger{
+        .trigger {
             z-index: 99;
             position: relative;
             top: 0;
@@ -63,9 +63,147 @@
             //     background: rgba(0, 0, 0, 0.1);
             // }
         }
+        .pain_des {
+            width: 100%;
+            .first {
+                width: 80%;
+                margin: 0 auto;
+                display: flex;
+                div {
+                    width: 50%;
+                    margin: 2.5px;
+                    padding: 0 10px;
+                    background-image: linear-gradient(to top, #1298e6, #17b7d7);
+                    height: 60px;
+                    border-radius: 10px;
+                    span {
+                        font-size: 12px;
+                        font-weight: bold;
+                        color: white;
+                    }
+                }
+            }
+            .second {
+                width: 80%;
+                background: white;
+                border-radius: 10px;
+                margin: 0 auto;
+                div.title {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    width: 75%;
+                    font-size: 14px;
+                    font-weight: bold;
+                    letter-spacing: 0.3px;
+                    color: #15abc9;
+                    margin: 5px 2.5px;
+                    padding: 0 0 0 10px;
+                    position: absolute;
+                    z-index: 99;
+                    .right {
+                        font-size: 12px;
+                        color: #999898;
+                    }
+                    svg {
+                        position: relative;
+                        top: -1px;
+                    }
+                }
+                .echarts-for-react {
+                    margin: 5px 5px 0 5px;
+                    padding: 0;
+                    height: 130px !important;
+                    div {
+                        width: fit-content;
+                    }
+                }
+                .choice {
+                    border-top: 2px solid rgba(230, 230, 230, 1);
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    a {
+                        width: 46px;
+                        border: 1.5px solid #38b5d1;
+                        border-radius: 20px;
+                        text-align: center;
+                        font-size: 12px;
+                        letter-spacing: 0.5px;
+                        margin: 3.5px 0;
+                        padding: 1px 0 0 0;
+                        color: white;
+                        background-color: #38b5d1;
+                        text-decoration: none;
+                        transition: all 0.5s;
+                    }
+                    a.active {
+                        border: 1.5px solid #38b5d1;
+                        color: #38b5d1;
+                        background-color: white;
+                    }
+                }
+            }
+            .third {
+                width: 80%;
+                margin: 3px auto;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                .block {
+                    width: 25%;
+                    margin: 1.5px;
+                    padding: 2px 5px;
+                    background-color: white;
+                    border-radius: 10px;
+                    border: 1px solid blue;
+                    div {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        height: 30px;
+                    }
+                    span{
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        font-size: 12px;
+                        color: #15abc9;
+                    }
+                }
+            }
+            .forth{
+                width: 80%;
+                margin: 3px auto;
+                display: flex;
+                justify-content: left;
+                align-items: center;
+                background-color: white;
+                border-radius: 10px;
+                font-size: 12px;
+                color: #1298e6;
+                padding: 4px 8px 15px 8px;
+                table{
+                    padding: 0;
+                    margin: 0;
+                    tbody{
+                        padding: 0;
+                        margin: 0;
+                        td{
+                            padding: 0;
+                        }
+                        .td_title{
+                            display: flex;
+                            white-space: nowrap;
+                        }
+                    }
+        
+                }
+            }
+        }
     }
     footer.show {
-        height: 18rem;
+        height: 24rem;
         transition: all 0.5s;
     }
 }

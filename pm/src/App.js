@@ -23,8 +23,8 @@ function App() {
             <DietManagePage />
           </Route>
         </Switch>
-        <Login />
       </Router>
+      <Login />
     </div>
   );
 }
