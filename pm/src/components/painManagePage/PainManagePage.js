@@ -13,7 +13,7 @@ function PainManagePage() {
   OnCanvasResize(canvasContent);
   const [recordClassName,setRecordClassName] = useState("record");
   const [footerClassName,setFooterClassName] = useState("");
-  const [formState, setFormState] = useState("")
+  // const [formState, setFormState] = useState("")
   const options = {
     grid: { top: 50, right: 18, bottom: 24, left: 48 },
     xAxis: {
@@ -35,7 +35,7 @@ function PainManagePage() {
     },
   };
   function showRecordMenu(){
-    if(showRecord == false){
+    if(showRecord === false){
       setRecordClassName("record show");
       setFooterClassName(" show");
       showRecord = true;
@@ -70,19 +70,19 @@ function PainManagePage() {
               <span><AiOutlineSearch />最近歷史紀錄/查詢</span>
               <span className="right">疼痛強度</span>
             </div>
-            <ReactEcharts className={formState} option={options} />
+            <ReactEcharts className={"formState"} option={options} />
             <div className="choice">
-              <a className="active" onClick={filterButton}>1週</a>
-              <a onClick={filterButton}>1個月</a>
-              <a onClick={filterButton}>3個月</a>
-              <a onClick={filterButton}>6個月</a>
-              <a onClick={filterButton}>1年</a>
+              <button className="active" onClick={filterButton}>1週</button>
+              <button onClick={filterButton}>1個月</button>
+              <button onClick={filterButton}>3個月</button>
+              <button onClick={filterButton}>6個月</button>
+              <button onClick={filterButton}>1年</button>
             </div>
           </div>
           <div className="third">
             <div className="block">
               <div>
-                <img src="clock.jpg" />
+                <img src="clock.jpg" alt="" />
               </div>
               <span>日期</span>    
             </div>
@@ -94,13 +94,13 @@ function PainManagePage() {
             </div>
             <div className="block">
               <div>
-                <img src="clock.jpg" />
+                <img src="clock.jpg" alt="" />
               </div>
               <span>症狀</span>
             </div>
             <div className="block">
               <div>
-                <img src="clock.jpg" />   
+                <img src="clock.jpg" alt="" />   
               </div>
               <span>時間</span>
             </div>

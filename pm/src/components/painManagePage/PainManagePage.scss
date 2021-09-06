@@ -123,7 +123,7 @@
                     display: flex;
                     justify-content: center;
                     align-items: center;
-                    a {
+                    button {
                         width: 46px;
                         border: 1.5px solid #38b5d1;
                         border-radius: 20px;
@@ -137,7 +137,7 @@
                         text-decoration: none;
                         transition: all 0.5s;
                     }
-                    a.active {
+                    button.active {
                         border: 1.5px solid #38b5d1;
                         color: #38b5d1;
                         background-color: white;

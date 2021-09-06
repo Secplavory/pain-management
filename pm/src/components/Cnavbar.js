@@ -5,7 +5,7 @@ import {useHistory, useLocation} from 'react-router-dom'
 import { AiFillHome } from 'react-icons/ai';
 import { MdAccountCircle } from "react-icons/md";
 
-var showLogin = false;
+var showLoginHandler = false;
 
 function Cnavlink(props) {
   const history = useHistory();
@@ -32,7 +32,7 @@ function Cnavbar(props) {
     }else{
       login_page.classList.remove("active");
     }
-    showLogin = !showLogin;
+    showLoginHandler = !showLoginHandler;
   }
   return (
     <Navbar id={props.id} fixed="sticky" expand="sm" bg="dark" variant="dark" onToggle={setNavExpanded} expanded={navExpanded}>
