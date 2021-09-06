@@ -13,7 +13,7 @@ function PainManagePage() {
   OnCanvasResize(canvasContent);
   const [recordClassName,setRecordClassName] = useState("record");
   const [footerClassName,setFooterClassName] = useState("");
-  // const [formState, setFormState] = useState("")
+  const [formState, setFormState] = useState("")
   const options = {
     grid: { top: 50, right: 18, bottom: 24, left: 48 },
     xAxis: {
@@ -70,7 +70,7 @@ function PainManagePage() {
               <span><AiOutlineSearch />最近歷史紀錄/查詢</span>
               <span className="right">疼痛強度</span>
             </div>
-            <ReactEcharts className={"formState"} option={options} />
+            <ReactEcharts className={formState} option={options} />
             <div className="choice">
               <button className="active" onClick={filterButton}>1週</button>
               <button onClick={filterButton}>1個月</button>
