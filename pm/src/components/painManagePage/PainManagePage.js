@@ -46,7 +46,7 @@ function PainManagePage() {
     }
   }
   function filterButton(e){
-    var choiceButton = document.querySelectorAll(".choice a");
+    var choiceButton = document.querySelectorAll(".choice button");
     choiceButton.forEach(ele=>{
       ele.classList.remove("active");
     });

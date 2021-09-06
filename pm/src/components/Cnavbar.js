@@ -27,7 +27,7 @@ function Cnavbar(props) {
 
   function showLogin(){
     const login_page = document.querySelector("#login");
-    if(showLogin){
+    if(showLoginHandler){
       login_page.classList.add("active");
     }else{
       login_page.classList.remove("active");
