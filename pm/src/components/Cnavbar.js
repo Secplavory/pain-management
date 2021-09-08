@@ -1,4 +1,5 @@
 import './Cnavbar.scss'
+import React from "react";
 import {Navbar, Nav, NavItem, NavbarBrand, NavLink} from 'react-bootstrap'
 import {useEffect, useState} from 'react'
 import {useHistory, useLocation} from 'react-router-dom'
@@ -23,16 +24,10 @@ function Cnavlink(props) {
   )
 }
 function Cnavbar(props) {
-  const [navExpanded, setNavExpanded] = useState(false)
+  const [navExpanded, setNavExpanded] = useState(false);
 
   function showLogin(){
-    const login_page = document.querySelector("#login");
-    if(showLoginHandler){
-      login_page.classList.add("active");
-    }else{
-      login_page.classList.remove("active");
-    }
-    showLoginHandler = !showLoginHandler;
+    props.toggleLogin();
   }
   return (
     <Navbar id={props.id} fixed="sticky" expand="sm" bg="dark" variant="dark" onToggle={setNavExpanded} expanded={navExpanded}>

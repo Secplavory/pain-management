@@ -11,7 +11,7 @@ var showRecord = false;
 function PainManagePage() {
   const canvasContent = CanvasInit();
   OnCanvasResize(canvasContent);
-  const [recordClassName,setRecordClassName] = useState("record");
+  const [recordClassName,setRecordClassName] = useState("");
   const [footerClassName,setFooterClassName] = useState("");
   const [formState, setFormState] = useState("")
   const options = {
@@ -36,7 +36,9 @@ function PainManagePage() {
   };
   function showRecordMenu(){
     if(showRecord === false){
-      setRecordClassName("record show");
+      setRecordClassName(function(prev){
+        return prev + " show";
+      });
       setFooterClassName(" show");
       showRecord = true;
     }else{
