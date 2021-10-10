@@ -6,12 +6,15 @@ import {useEffect, useState} from 'react'
 import ReactEcharts from 'echarts-for-react'
 import { AiOutlineSearch } from "react-icons/ai";
 
+// import icon
+import icon_clock from '../../asserts/PainManagePage/icon-clock.jpg'
+
 var showRecord = false;
 
 function PainManagePage() {
   const canvasContent = CanvasInit();
   OnCanvasResize(canvasContent);
-  const [recordClassName,setRecordClassName] = useState("");
+  const [recordClassName,setRecordClassName] = useState("record");
   const [footerClassName,setFooterClassName] = useState("");
   const [formState, setFormState] = useState("")
   const options = {
@@ -83,25 +86,25 @@ function PainManagePage() {
           </div>
           <div className="third">
             <div className="block">
-              <div>
-                <img src="clock.jpg" alt="" />
+              <div className="block_content">
+                <img src={icon_clock} alt="" />
               </div>
               <span>日期</span>    
             </div>
             <div className="block">
-              <div>
+              <div className="block_content">
                 
               </div>
               <span>部位名稱</span>
             </div>
             <div className="block">
-              <div>
+              <div className="block_content">
                 <img src="clock.jpg" alt="" />
               </div>
               <span>症狀</span>
             </div>
             <div className="block">
-              <div>
+              <div className="block_content">
                 <img src="clock.jpg" alt="" />   
               </div>
               <span>時間</span>

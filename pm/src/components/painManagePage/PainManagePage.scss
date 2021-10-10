@@ -38,7 +38,7 @@
         }
     }
     .record.show {
-        bottom: 24.5rem;
+        bottom: 26.5rem;
         transition: all 0.5s;
     }
     footer {
@@ -52,6 +52,7 @@
         border-top-right-radius: 1rem;
         transition: all 0.5s;
         .trigger {
+            cursor: pointer;
             z-index: 99;
             position: relative;
             top: 0;
@@ -74,7 +75,7 @@
                     margin: 2.5px;
                     padding: 0 10px;
                     background-image: linear-gradient(to top, #1298e6, #17b7d7);
-                    height: 60px;
+                    height: 70px;
                     border-radius: 10px;
                     span {
                         font-size: 12px;
@@ -113,7 +114,7 @@
                 .echarts-for-react {
                     margin: 5px 5px 0 5px;
                     padding: 0;
-                    height: 130px !important;
+                    height: 135px !important;
                     div {
                         width: fit-content;
                     }
@@ -157,11 +158,16 @@
                     background-color: white;
                     border-radius: 10px;
                     border: 1px solid blue;
-                    div {
+                    .block_content {
                         display: flex;
                         justify-content: center;
                         align-items: center;
-                        height: 30px;
+                        height: 35px;
+                        width: 100%;
+                        img{
+                            margin: 7.5px auto 0 auto;
+                            width: 75%;
+                        }
                     }
                     span{
                         display: flex;
@@ -182,7 +188,7 @@
                 border-radius: 10px;
                 font-size: 12px;
                 color: #1298e6;
-                padding: 4px 8px 15px 8px;
+                padding: 10px 10px 20px 10px;
                 table{
                     padding: 0;
                     margin: 0;
@@ -203,7 +209,7 @@
         }
     }
     footer.show {
-        height: 24rem;
+        height: 26rem;
         transition: all 0.5s;
     }
 }
