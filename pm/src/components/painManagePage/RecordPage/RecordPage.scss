@@ -1,0 +1,99 @@
+#record_page{
+    z-index: 98;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 0rem;
+    background-color: rgba(230, 230, 230, 1);
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+    transition: all 0.25s;
+    .first {
+        width: 80%;
+        margin: 1rem auto 0 auto;
+        display: flex;
+        .select {
+            position: relative;
+            width: 50%;
+            margin: 2.5px;
+            padding: 0 10px;
+            background-image: linear-gradient(to top, #1298e6, #17b7d7);
+            height: 70px;
+            border-radius: 10px;
+            span {
+                font-size: 12px;
+                font-weight: bold;
+                color: white;
+            }
+            .part{
+                width: fit-content;
+                font-size: 28px;
+                letter-spacing: 2.5px;
+                position: absolute;
+                bottom: 5px;
+                right: 10px;
+            }
+            .level{
+                font-weight: bold;
+                font-size: 32px;
+                text-align: center;
+                color: white;
+            }
+        }
+    }
+    .group_buttons{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 20px 10%;
+        button{
+            width: 20%;
+            border: none;
+            border-radius: 5px;
+            background-image: linear-gradient(to right, #027bed, #17b6d7);
+            color: white;
+            font-size: 12px;
+            letter-spacing: 5px;
+            padding: 5px 7.5px 5px 12.5px;
+            margin: 0 5px;
+        }
+    }
+    .record{
+        z-index: 98;
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        height: 0rem;
+        background-color: rgba(230, 230, 230, 1);
+        border-top-left-radius: 1rem;
+        border-top-right-radius: 1rem;
+        transition: all 0.25s;
+        .pain_level{
+            margin: 15px 10% 0px 10%;
+            padding: 10px 0 0 0;
+            height: 100px;
+            background: white;
+            border-radius: 5px;
+            .level_bar{
+                padding-left: 10px;
+                img{
+                    width: 100%;
+                }
+            }
+            .level_text{
+                margin: 0px 5%;
+                font-size: 12px;
+                display: flex;
+                justify-content: space-between;
+            }
+        }
+    }
+    .record.show{
+        height: 39.5rem;
+        transition: all 0.5s;
+    }
+}
+#record_page.show{
+    height: 11rem;
+    transition: all 0.5s;
+}

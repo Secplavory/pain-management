@@ -10,7 +10,7 @@
         width: 100%;
         height: 100%;
     }
-    .record {
+    .record_button {
         z-index: 99;
         position: fixed;
         right: 0.5rem;
@@ -20,6 +20,7 @@
         border-radius: 999rem;
         background-color: cornflowerblue;
         transition: all 0.5s;
+        display: inline;
         div {
             min-width: 3rem;
             color: white;
@@ -37,9 +38,13 @@
             top: -17px;
         }
     }
-    .record.show {
+    .record_button.show {
+        display: inline;
         bottom: 26.5rem;
         transition: all 0.5s;
+    }
+    .record_button.hide {
+        display: none;
     }
     footer {
         z-index: 98;

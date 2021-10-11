@@ -5,8 +5,9 @@ import {GLTFLoader} from 'three/examples/jsm/loaders/GLTFLoader'
 import {useEffect, useState} from 'react'
 import ReactEcharts from 'echarts-for-react'
 import { AiOutlineSearch } from "react-icons/ai";
+import RecordPage from './RecordPage/RecordPage.js'
 
-// import icon
+// import icon  
 import icon_clock from '../../asserts/PainManagePage/icon-clock.jpg'
 
 var showRecord = false;
@@ -14,9 +15,10 @@ var showRecord = false;
 function PainManagePage() {
   const canvasContent = CanvasInit();
   OnCanvasResize(canvasContent);
-  const [recordClassName,setRecordClassName] = useState("record");
+  const [recordButtonClassName,setRecordButtonClassName] = useState("record_button");
   const [footerClassName,setFooterClassName] = useState("");
-  const [formState, setFormState] = useState("")
+  const [formState, setFormState] = useState("");
+  const [record, setRecord] = useState(false);
   const options = {
     grid: { top: 50, right: 18, bottom: 24, left: 48 },
     xAxis: {
@@ -37,17 +39,26 @@ function PainManagePage() {
       trigger: 'axis',
     },
   };
-  function showRecordMenu(){
-    if(showRecord === false){
-      setRecordClassName(function(prev){
-        return prev + " show";
-      });
-      setFooterClassName(" show");
-      showRecord = true;
+  function showRecordMenu(state){
+    if(state == "record_button"){
+      setRecordButtonClassName(state);
+    }else
+    if(state == " show"){
+      if(showRecord == false){
+        setRecordButtonClassName(function(prev){
+          return prev + state;
+        });
+        showRecord = true;
+        setFooterClassName(" show");
+      } else{
+        setRecordButtonClassName("record_button");
+        setFooterClassName("");
+        showRecord = false;
+      }
     }else{
-      setRecordClassName("record");
-      setFooterClassName("");
-      showRecord = false;
+      setRecordButtonClassName(function(prev){
+        return prev + state;
+      });
     }
   }
   function filterButton(e){
@@ -57,14 +68,24 @@ function PainManagePage() {
     });
     e.target.classList.add("active");
   }
+  const updateRecordState = (newRecordState) => {
+    setRecord(newRecordState);
+    if(newRecordState){
+      setRecordButtonClassName("record_button hide")
+      setFooterClassName("");
+      showRecord = false;
+    }else{
+      setRecordButtonClassName("record_button")
+    }
+  }
   return (
     <div id="PainCanvas">
-      <div className={recordClassName}>
+      <div className={recordButtonClassName} onClick={()=> updateRecordState(true)}>
         <div className="top">+</div>
         <div className="bottom">紀錄</div>
       </div>
       <footer className={footerClassName}>
-        <div className="trigger" onClick={showRecordMenu}></div>
+        <div className="trigger" onClick={()=> showRecordMenu(" show")}></div>
         <div className="pain_des">
           <div className="first">
             <div><span>最痛部位</span></div>
@@ -125,8 +146,8 @@ function PainManagePage() {
             </table>
           </div>
         </div>
-
       </footer>
+      <RecordPage record={record} updateRecordState={updateRecordState} />
     </div>
   );
 }
