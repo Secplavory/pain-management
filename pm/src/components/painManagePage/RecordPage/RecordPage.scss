@@ -10,7 +10,7 @@
     transition: all 0.25s;
     .first {
         width: 80%;
-        margin: 1rem auto 0 auto;
+        margin: 0.5rem auto 0 auto;
         display: flex;
         .select {
             position: relative;
@@ -68,10 +68,20 @@
         border-top-left-radius: 1rem;
         border-top-right-radius: 1rem;
         transition: all 0.25s;
+        .title{
+            padding: 2.5px 15px;
+            color: white;
+            font-size: 15px;
+            font-weight: bold;
+            span{
+                color: gray;
+                font-size: 12px;
+                padding: 0 3px;
+            }
+        }
         .pain_level{
-            margin: 15px 10% 0px 10%;
+            margin: 7.5px 10% 0px 10%;
             padding: 0 15px;
-            // height: 100px;
             background: white;
             border-radius: 5px;
             .level_bar{
@@ -109,13 +119,204 @@
                 font-size: 12px;
             }
         }
+        .pain_nature{
+            margin: 7.5px 8% 0px 8%;
+            background: #cccccc;
+            border-radius: 5px;
+            .nature_list{
+                display: grid;
+                .nature_row{
+                    display: flex;
+                    flex-wrap: wrap;
+                    justify-content: center;
+                    align-items: center;
+                    .nature{
+                        background: white;
+                        border-radius: 8px;
+                        width: 22.5%;
+                        margin: 2.5px;
+                        img{
+                            display: flex;
+                            margin: auto;
+                            border-radius: 8px;
+                            width: 100%;
+                            padding: 0 10px;
+                        }
+                        .nature_name{
+                            margin: auto;
+                            width: fit-content;
+                            padding: 0 0 5px 5px;
+                            text-align: center;
+                            letter-spacing: 2.5px;
+                            font-size: 12px;
+                            color: #52bcd1;
+                            font-weight: bold;
+                        }
+                    }
+                    .other{
+                        display: flex;
+                        background: #e2e2e2;
+                        border-radius: 8px;
+                        width: 45.5%;
+                        margin: 2.5px 5px;
+                        .active_record{
+                            border-radius: 8px;
+                            background: #FFFFFF;
+                        }
+                        img{
+                            display: flex;
+                            margin: auto;
+                            border-radius: 8px;
+                            width: 100%;
+                            padding: 0 10px;
+                        }
+                        .nature_name{
+                            margin: auto;
+                            width: fit-content;
+                            padding: 0 0 5px 0px;
+                            text-align: center;
+                            font-size: 12px;
+                            color: #52bcd1;
+                            font-weight: bold;
+                        }
+                    }
+                }
+            }
+        }
+        .pain_time{
+            margin: 7.5px 8% 0px 8%;
+            padding-bottom: 5px;
+            background: #cccccc;
+            border-radius: 5px;
+            .time{
+                margin: 0 7.5px;
+                background: #e2e2e2;
+                border-radius: 8px;
+                .time_picker{
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    background: white;
+                    border-radius: 8px;
+                    .clock{
+                        width: 50px;
+                        img{
+                            width: 85%;
+                        }
+                    }
+                    #pain_time_show{
+                        font-size: 12px;
+                        font-weight: bolder;
+                        border: 2px solid #9ed3dd;
+                        border-radius: 8px;
+                        padding: 2.5px 15px 2.5px 10px;
+                    }
+                    input{
+                        position: relative;
+                        display: inline-block;
+                        outline: none;
+                        appearance: none;
+                        border: none;
+                    }
+                    input::-webkit-datetime-edit {
+                        display: none;
+                    }
+                    input::-webkit-calendar-picker-indicator {
+                        position: relative;
+                        left: -20px;
+                    }
+                }
+                .continued{
+                    margin: 5px 10px 0 10px;
+                    text-align: center;
+                    color: rgb(97, 97, 97);
+                    h1{
+                        border-bottom: 0.25px solid rgba(255, 255, 255, 0.5);
+                        font-size: 12px;
+                        font-weight: bold;
+                        letter-spacing: 1.2px;
+                        padding: 1px ;
+                        margin: 0;
+                    }
+                    .continued_button_row{
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        .continued_button{
+                            button {
+                                white-space: nowrap;
+                                border: 1.5px solid #38b5d1;
+                                border-radius: 20px;
+                                text-align: center;
+                                font-size: 12px;
+                                margin: 3.5px 1.5px;
+                                padding: 0px 5px;
+                                color: white;
+                                background-color: #38b5d1;
+                                text-decoration: none;
+                                transition: all 0.5s;
+                                letter-spacing: -1.5px;
+                            }
+                            button.active {
+                                border: 1.5px solid #38b5d1;
+                                color: #38b5d1;
+                                background-color: white;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .other_des{
+            margin: 7.5px 8% 0px 8%;
+            background: #cccccc;
+            border-radius: 5px;
+            padding-bottom: 5px;
+            .input_des{
+                padding: 0 2.5px 0 2.5px;
+                input{
+                    outline: none;
+                    padding: 0 10px;
+                    font-size: 14px;
+                    width: 100%;
+                    height: 22.5px;
+                    background: #e2e2e2;
+                    border-radius: 16px;
+                    border: 3px solid whitesmoke;
+                }
+            }
+
+        }
+        .record_buttons{
+            margin: 5px 0 0 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            button{
+                border: none;
+                border-radius: 5px;
+                background-image: linear-gradient(to right, #027bed, #17b6d7);
+                color: white;
+                font-size: 12px;
+                padding: 5px 7.5px 5px 7.5px;
+                margin: 0 5px;
+            }
+        }
     }
     .record.show{
-        height: 39.5rem;
+        height: 38rem;
         transition: all 0.5s;
     }
 }
 #record_page.show{
     height: 11rem;
     transition: all 0.5s;
+}
+@media screen and (min-width:355px) {
+    #record_page{
+        .record.show{
+            height: 39rem;
+            transition: all 0.5s;
+        }
+    }
 }
