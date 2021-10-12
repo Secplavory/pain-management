@@ -13,7 +13,9 @@ function RecordPage(props) {
       return prev + state;
     });
   }
-
+  const painLevelBar = (e)=>{
+    console.log(e.target.value)
+  }
   return (
     <div id="record_page" className={props.record ? 'show' : ''}>
       <div id="selection">
@@ -44,6 +46,7 @@ function RecordPage(props) {
         </div>
         <div className="pain_level">
           <div className="level_bar">
+            <input type="range" className="slider" id="level_bar" onChange={painLevelBar} />
             <img src={pain_level}></img>
           </div>
           <div className="level_text">

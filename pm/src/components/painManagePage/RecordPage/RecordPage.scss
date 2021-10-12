@@ -45,7 +45,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        margin: 20px 10%;
+        margin: 20px 0;
         button{
             width: 20%;
             border: none;
@@ -70,21 +70,43 @@
         transition: all 0.25s;
         .pain_level{
             margin: 15px 10% 0px 10%;
-            padding: 10px 0 0 0;
-            height: 100px;
+            padding: 0 15px;
+            // height: 100px;
             background: white;
             border-radius: 5px;
             .level_bar{
-                padding-left: 10px;
+                position: relative;
                 img{
-                    width: 100%;
+                    display: flex;
+                    margin: 0 auto;
+                    width: 225px;
+                }
+                .slider{
+                    -webkit-appearance: none;
+                    appearance: none;
+                    background: transparent;
+                    width: 208px;
+                    margin: auto;
+                    display: flex;
+                    position: relative;
+                    top: 3rem;
+                    left: 0.15rem;
+                }
+                .slider::-webkit-slider-thumb {
+                    -webkit-appearance: none;
+                    appearance: none;
+                    width: 8px;
+                    height: 8px;
+                    border: 1px solid black;
+                    background: #FFFFFF;
+                    cursor: pointer;
+                    border-radius: 999rem;
                 }
             }
             .level_text{
-                margin: 0px 5%;
-                font-size: 12px;
                 display: flex;
                 justify-content: space-between;
+                font-size: 12px;
             }
         }
     }
