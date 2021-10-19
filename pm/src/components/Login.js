@@ -1,5 +1,4 @@
 import './Login.scss'
-import {useEffect, useState} from 'react'
 
 function Login(props) {
 

@@ -6,7 +6,7 @@ import {useHistory, useLocation} from 'react-router-dom'
 import { AiFillHome } from 'react-icons/ai';
 import { MdAccountCircle } from "react-icons/md";
 
-var showLoginHandler = false;
+// var showLoginHandler = false;
 
 function Cnavlink(props) {
   const history = useHistory();

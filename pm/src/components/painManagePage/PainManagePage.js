@@ -40,11 +40,11 @@ function PainManagePage() {
     },
   };
   function showRecordMenu(state){
-    if(state == "record_button"){
+    if(state === "record_button"){
       setRecordButtonClassName(state);
     }else
-    if(state == " show"){
-      if(showRecord == false){
+    if(state === " show"){
+      if(showRecord === false){
         setRecordButtonClassName(function(prev){
           return prev + state;
         });

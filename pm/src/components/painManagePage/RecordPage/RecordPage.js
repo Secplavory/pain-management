@@ -31,17 +31,17 @@ function RecordPage(props) {
   const setNowDate = ()=>{
     var now = new Date();
     var year = now.getFullYear();
-    var month = (now.getMonth() + 1).toString().length == 1 ? '0' + (now.getMonth() + 1).toString() : now.getMonth() + 1;
-    var date = now.getDate().toString().length == 1 ? '0' + (now.getDate()).toString() : now.getDate();
-    var hours = now.getHours().toString().length == 1 ? '0' + now.getHours().toString() : now.getHours();
-    var minutes = now.getMinutes().toString().length == 1 ? '0' + now.getMinutes().toString() : now.getMinutes();
+    var month = (now.getMonth() + 1).toString().length === 1 ? '0' + (now.getMonth() + 1).toString() : now.getMonth() + 1;
+    var date = now.getDate().toString().length === 1 ? '0' + (now.getDate()).toString() : now.getDate();
+    var hours = now.getHours().toString().length === 1 ? '0' + now.getHours().toString() : now.getHours();
+    var minutes = now.getMinutes().toString().length === 1 ? '0' + now.getMinutes().toString() : now.getMinutes();
     var formattedDateTime = year + '-' + month + '-' + date + 'T' + hours + ':' + minutes;
     document.getElementById('pain_time_picker').value = formattedDateTime;
     updatePainTime(formattedDateTime)
   }
   const controlRecord = (state)=>{
     // props.updateRecordState(false);
-    if(state == ' show'){
+    if(state === ' show'){
       setRecordClassName(function(prev){
         return prev + state;
       });
@@ -88,7 +88,7 @@ function RecordPage(props) {
         <div className="pain_level">
           <div className="level_bar">
             <input type="range" className="slider" id="level_bar" onChange={painLevelBar} />
-            <img src={pain_level}></img>
+            <img src={pain_level} alt=""></img>
           </div>
           <div className="level_text">
             <span>完全不痛</span>
@@ -100,38 +100,38 @@ function RecordPage(props) {
           <div className="nature_list">
             <div className="nature_row">
               <div className="nature">
-                <img src={ hot_pain } />
+                <img src={ hot_pain } alt="" />
                 <h2 className="nature_name">灼熱痛</h2>
               </div>
               <div className="nature">
-                <img src={ paralysis_pain } />
+                <img src={ paralysis_pain } alt="" />
                 <h2 className="nature_name">麻痛</h2>
               </div>
               <div className="nature">
-                <img src={ cut_pain } />
+                <img src={ cut_pain } alt="" />
                 <h2 className="nature_name">刀割痛</h2>
               </div>
               <div className="nature">
-                <img src={ stuffy_pain } />
+                <img src={ stuffy_pain } alt="" />
                 <h2 className="nature_name">悶痛</h2>
               </div>
             </div>
             <div className="nature_row">
               <div className="nature">
-                <img src={ throbbing_pain } />
+                <img src={ throbbing_pain } alt="" />
                 <h2 className="nature_name">灼熱痛</h2>
               </div>
               <div className="nature">
-                <img src={ tingling_pain } />
+                <img src={ tingling_pain } alt="" />
                 <h2 className="nature_name">麻痛</h2>
               </div>
               <div className="other">
                 <div className="active_record">
-                  <img src={ record_img } />
+                  <img src={ record_img } alt="" />
                   <h2 className="nature_name">其他疼痛</h2>
                 </div>
                 <div>
-                  <img src={ record_unactive } />
+                  <img src={ record_unactive } alt="" />
                   <h2 className="nature_name">語音紀錄</h2>
                 </div>
               </div>
@@ -142,7 +142,7 @@ function RecordPage(props) {
           <div className="title">疼痛時間<span>( 請點選您的疼痛時間點 )</span></div>
           <div className="time">
             <div className="time_picker">
-              <div className="clock"><img src={icon_clock}></img></div>
+              <div className="clock"><img src={icon_clock} alt=""></img></div>
               <span id="pain_time_show">{ painTime }</span>
               <input type="datetime-local" id="pain_time_picker" onChange={(e)=>updatePainTime(e.target.value)}></input> 
             </div>
