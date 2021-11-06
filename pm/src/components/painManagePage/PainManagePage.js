@@ -10,13 +10,13 @@ import RecordPage from './RecordPage/RecordPage.js'
 // import icon  
 import icon_clock from '../../asserts/PainManagePage/icon-clock.jpg'
 
-var showRecord = false;
+var showRecord = true;
 
 function PainManagePage() {
   const canvasContent = CanvasInit();
   OnCanvasResize(canvasContent);
-  const [recordButtonClassName,setRecordButtonClassName] = useState("record_button");
-  const [footerClassName,setFooterClassName] = useState("");
+  const [recordButtonClassName,setRecordButtonClassName] = useState("record_button show");
+  const [footerClassName,setFooterClassName] = useState(" show");
   const [formState, setFormState] = useState("");
   const [record, setRecord] = useState(false);
   const options = {

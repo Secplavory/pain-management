@@ -123,6 +123,13 @@
             margin: 7.5px 8% 0px 8%;
             background: #cccccc;
             border-radius: 5px;
+            .nature_choice{
+                cursor: pointer;
+                border: transparent 2.5px solid;
+            }
+            .nature_choice.active{
+                border: #1298e6 2.5px solid;
+            }
             .nature_list{
                 display: grid;
                 .nature_row{
@@ -135,13 +142,21 @@
                         border-radius: 8px;
                         width: 22.5%;
                         margin: 2.5px;
-                        img{
+                        .nature_img{
+                            width: 60px;
                             display: flex;
-                            margin: auto;
-                            border-radius: 8px;
-                            width: 100%;
-                            padding: 0 10px;
+                            justify-content: center;
+                            align-items: center;
+                            margin: 0 auto;
+                            img{
+                                display: flex;
+                                margin: auto;
+                                border-radius: 8px;
+                                width: 100%;
+                                padding: 0 10px;
+                            }
                         }
+
                         .nature_name{
                             margin: auto;
                             width: fit-content;
@@ -155,6 +170,7 @@
                     }
                     .other{
                         display: flex;
+                        justify-content: flex-start;
                         background: #e2e2e2;
                         border-radius: 8px;
                         width: 45.5%;
@@ -162,13 +178,24 @@
                         .active_record{
                             border-radius: 8px;
                             background: #FFFFFF;
+                            width: 50%;
                         }
-                        img{
+                        .audio{
+                            width: 50%;
+                        }
+                        .nature_img{
+                            width: 60px;
                             display: flex;
-                            margin: auto;
-                            border-radius: 8px;
-                            width: 100%;
-                            padding: 0 10px;
+                            justify-content: center;
+                            align-items: center;
+                            margin: 0 auto;
+                            img{
+                                display: flex;
+                                margin: auto;
+                                border-radius: 8px;
+                                width: 100%;
+                                padding: 0 10px;
+                            }
                         }
                         .nature_name{
                             margin: auto;

@@ -16,7 +16,7 @@ import icon_clock from '../../../asserts/PainManagePage/icon-clock.jpg'
 
 function RecordPage(props) {
   const [recordClassName,setRecordClassName] = useState("record");
-  const [painLevel,setPainLevel] = useState();
+  const [painLevel,setPainLevel] = useState(5);
   const [painTime,setPainTime] = useState();
 
   const updatePainTime = (time)=>{
@@ -39,6 +39,30 @@ function RecordPage(props) {
     document.getElementById('pain_time_picker').value = formattedDateTime;
     updatePainTime(formattedDateTime)
   }
+  const natureClick = (e) =>{
+    var natureChioce = document.querySelectorAll('.nature_choice');
+    natureChioce.forEach(element=>{
+      element.classList.remove('active');
+    })
+    var target = e.target;
+    while(!target.classList.contains('nature_choice')){
+      target = target.parentElement;
+    }
+    target.classList.add('active');
+  }
+  const filterButton = (e) =>{
+    var button_type;
+    if(e.target.classList.contains('top_choice')){
+      button_type = 'top_choice';
+    }else{
+      button_type = 'bottom_choice'
+    }
+    var button_list = document.querySelectorAll("."+button_type);
+    button_list.forEach(element=>{
+      element.classList.remove('active')
+    });
+    e.target.classList.add('active');
+  }
   const controlRecord = (state)=>{
     // props.updateRecordState(false);
     if(state === ' show'){
@@ -50,7 +74,6 @@ function RecordPage(props) {
       props.updateRecordState(false);
       setRecordClassName('record');
     }
-
   }
   const painLevelBar = (e)=>{
     var pain_level_value = Math.round(e.target.value/10);
@@ -99,39 +122,55 @@ function RecordPage(props) {
           <div className="title">疼痛性質<span>( 請點選您的疼痛感覺 )</span></div>
           <div className="nature_list">
             <div className="nature_row">
-              <div className="nature">
-                <img src={ hot_pain } alt="" />
+              <div className="nature nature_choice" onClick={natureClick}>
+                <div className="nature_img">
+                  <img src={ hot_pain } alt="" />
+                </div>
                 <h2 className="nature_name">灼熱痛</h2>
               </div>
-              <div className="nature">
-                <img src={ paralysis_pain } alt="" />
+              <div className="nature nature_choice" onClick={natureClick}>
+                <div className="nature_img">
+                  <img src={ paralysis_pain } alt="" />
+                </div>
                 <h2 className="nature_name">麻痛</h2>
               </div>
-              <div className="nature">
-                <img src={ cut_pain } alt="" />
+              <div className="nature nature_choice" onClick={natureClick}>
+                <div className="nature_img">
+                  <img src={ cut_pain } alt="" />
+                </div>
                 <h2 className="nature_name">刀割痛</h2>
               </div>
-              <div className="nature">
-                <img src={ stuffy_pain } alt="" />
+              <div className="nature nature_choice" onClick={natureClick}>
+                <div className="nature_img">
+                  <img src={ stuffy_pain } alt="" />
+                </div>                
                 <h2 className="nature_name">悶痛</h2>
               </div>
             </div>
             <div className="nature_row">
-              <div className="nature">
-                <img src={ throbbing_pain } alt="" />
+              <div className="nature nature_choice" onClick={natureClick}>
+                <div className="nature_img">
+                  <img src={ throbbing_pain } alt="" />
+                </div>  
                 <h2 className="nature_name">灼熱痛</h2>
               </div>
-              <div className="nature">
-                <img src={ tingling_pain } alt="" />
+              <div className="nature nature_choice" onClick={natureClick}>
+                <div className="nature_img">
+                  <img src={ tingling_pain } alt="" />
+                </div>  
                 <h2 className="nature_name">麻痛</h2>
               </div>
-              <div className="other">
+              <div className="other nature_choice" onClick={natureClick}>
                 <div className="active_record">
-                  <img src={ record_img } alt="" />
+                  <div className="nature_img">
+                    <img src={ record_img } alt="" />
+                  </div>  
                   <h2 className="nature_name">其他疼痛</h2>
                 </div>
-                <div>
-                  <img src={ record_unactive } alt="" />
+                <div className="audio">
+                  <div className="nature_img">
+                    <img src={ record_unactive } alt="" />
+                  </div>
                   <h2 className="nature_name">語音紀錄</h2>
                 </div>
               </div>
@@ -149,15 +188,15 @@ function RecordPage(props) {
             <div className="continued">
               <h1>持續多久</h1>
               <div className="continued_button_row">
-                <div className="continued_button"><button>一陣一陣</button></div>
-                <div className="continued_button"><button>持續一整天</button></div>
-                <div className="continued_button"><button>不固定</button></div>
+                <div className="continued_button"><button className="top_choice" onClick={filterButton}>一陣一陣</button></div>
+                <div className="continued_button"><button className="top_choice" onClick={filterButton}>持續一整天</button></div>
+                <div className="continued_button"><button className="top_choice" onClick={filterButton}>不固定</button></div>
               </div>
               <div className="continued_button_row">
-                <div className="continued_button"><button>每次1小時以內</button></div>
-                <div className="continued_button"><button>1-2小時</button></div>
-                <div className="continued_button"><button>3-5小時</button></div>
-                <div className="continued_button"><button>6小時以上</button></div>
+                <div className="continued_button"><button className="bottom_choice" onClick={filterButton}>每次1小時以內</button></div>
+                <div className="continued_button"><button className="bottom_choice" onClick={filterButton}>1-2小時</button></div>
+                <div className="continued_button"><button className="bottom_choice" onClick={filterButton}>3-5小時</button></div>
+                <div className="continued_button"><button className="bottom_choice" onClick={filterButton}>6小時以上</button></div>
               </div>
             </div>
           </div>
@@ -169,7 +208,7 @@ function RecordPage(props) {
           </div>
         </div>
         <div className="record_buttons">
-          <button>完成送出</button>
+          <button onClick={()=>controlRecord("")}>完成送出</button>
           <button onClick={()=>controlRecord("")}>取消</button>
         </div>
       </div>
