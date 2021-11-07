@@ -12,6 +12,19 @@
         width: 80%;
         margin: 0.5rem auto 0 auto;
         display: flex;
+        justify-content: center;
+        align-items: center;
+        .selector{
+            position: absolute;
+            width: 50%;
+            margin: 2.5px;
+            padding: 0 15px;
+            opacity: 0;
+            select{
+                height: 70px;
+                width: 100%;
+            }
+        }
         .select {
             position: relative;
             width: 50%;

@@ -16,6 +16,7 @@ import icon_clock from '../../../asserts/PainManagePage/icon-clock.jpg'
 
 function RecordPage(props) {
   const [recordClassName,setRecordClassName] = useState("record");
+  const [painPart,setPainPart] = useState("");
   const [painLevel,setPainLevel] = useState(5);
   const [painTime,setPainTime] = useState();
 
@@ -38,6 +39,10 @@ function RecordPage(props) {
     var formattedDateTime = year + '-' + month + '-' + date + 'T' + hours + ':' + minutes;
     document.getElementById('pain_time_picker').value = formattedDateTime;
     updatePainTime(formattedDateTime)
+  }
+  const getPainPart = (e) =>{
+    var painPart = document.getElementById('painPart').value;
+    setPainPart(painPart);
   }
   const natureClick = (e) =>{
     var natureChioce = document.querySelectorAll('.nature_choice');
@@ -86,10 +91,17 @@ function RecordPage(props) {
         <div className="first">
           <div className="select">
             <span>最痛部位</span>
-            <span className="part">右大腿</span>
+            <span className="part">{ painPart }</span>
           </div>
-          <div className="select">
-            <span>疼痛等級</span>
+          <div className="selector">
+            <select id="painPart" name="painPart" onChange={getPainPart}>
+              <option value="左大腿">左大腿</option>
+              <option value="右大腿">右大腿</option>
+              <option value="左小腿">左小腿</option>
+              <option value="右小腿">右小腿</option>
+              <option value="左手臂">左手臂</option>
+              <option value="右手臂">右手臂</option>
+            </select>
           </div>
         </div>
         <div className="group_buttons">
@@ -101,7 +113,7 @@ function RecordPage(props) {
         <div className="first">
           <div className="select">
             <span>最痛部位</span>
-            <span className="part">右大腿</span>
+            <span className="part">{ painPart }</span>
           </div>
           <div className="select">
             <span>疼痛等級</span>
