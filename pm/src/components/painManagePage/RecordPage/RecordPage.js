@@ -10,7 +10,7 @@ import stuffy_pain from '../../../asserts/PainManagePage/stuffy_pain.jpg'
 import throbbing_pain from '../../../asserts/PainManagePage/throbbing_pain.jpg'
 import tingling_pain from '../../../asserts/PainManagePage/tingling_pain.jpg'
 import record_img from '../../../asserts/PainManagePage/record.jpg'
-import record_unactive from '../../../asserts/PainManagePage/record_unactive.jpg'
+import record_unactive from '../../../asserts/PainManagePage/record_unactive.png'
 import record_active from '../../../asserts/PainManagePage/record_active.jpg'
 import icon_clock from '../../../asserts/PainManagePage/icon-clock.jpg'
 
