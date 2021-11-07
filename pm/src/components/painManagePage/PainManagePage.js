@@ -9,6 +9,8 @@ import RecordPage from './RecordPage/RecordPage.js'
 
 // import icon  
 import icon_clock from '../../asserts/PainManagePage/icon-clock.jpg'
+// import data  
+import record_data from '../../data/record_data.json'
 
 var showRecord = true;
 
@@ -19,18 +21,22 @@ function PainManagePage() {
   const [footerClassName,setFooterClassName] = useState(" show");
   const [formState, setFormState] = useState("");
   const [record, setRecord] = useState(false);
+  const [painPart,setPainPart] = useState("");
+  var time_during = "1週";
+  var target_data;
+  // console.log(document.getElementById('painPart').value)
   const options = {
     grid: { top: 50, right: 18, bottom: 24, left: 48 },
     xAxis: {
       type: 'category',
-      data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+      // data: ['11/1', '11/2', '11/3', '11/4', '11/5', '11/6', '11/7'],
     },
     yAxis: {
       type: 'value',
     },
     series: [
       {
-        data: [820, 932, 901, 934, 1290, 1330, 1320],
+        // data: [820, 932, 901, 934, 1290, 1330, 1320],
         type: 'line',
         smooth: true,
       },
@@ -39,6 +45,16 @@ function PainManagePage() {
       trigger: 'axis',
     },
   };
+  const getPainPart = (e) =>{
+    var pain_Part = document.getElementById('painPart').value;
+    setPainPart(pain_Part); 
+    // target_data = record_data[painPart][time_during];
+    setPainPart(function(prev){
+      target_data = record_data[prev][time_during];
+      console.log(target_data);
+      return prev;
+    });
+  }
   function showRecordMenu(state){
     if(state === "record_button"){
       setRecordButtonClassName(state);
@@ -67,6 +83,11 @@ function PainManagePage() {
       ele.classList.remove("active");
     });
     e.target.classList.add("active");
+    time_during = e.target.textContent;
+    if(painPart != ''){
+      target_data = record_data[painPart][time_during];
+      console.log(target_data);
+    }
   }
   const updateRecordState = (newRecordState) => {
     setRecord(newRecordState);
@@ -87,64 +108,78 @@ function PainManagePage() {
       <footer className={footerClassName}>
         <div className="trigger" onClick={()=> showRecordMenu(" show")}></div>
         <div className="pain_des">
-          <div className="first">
-            <div><span>最痛部位</span></div>
-            <div><span>疼痛等級</span></div>
+        <div className="first">
+          <div className="select">
+            <span>最痛部位</span>
+            <span className="part">{ painPart }</span>
           </div>
-          <div className="second">
-            <div className="title">
-              <span><AiOutlineSearch />最近歷史紀錄/查詢</span>
-              <span className="right">疼痛強度</span>
-            </div>
-            <ReactEcharts className={formState} option={options} />
-            <div className="choice">
-              <button className="active" onClick={filterButton}>1週</button>
-              <button onClick={filterButton}>1個月</button>
-              <button onClick={filterButton}>3個月</button>
-              <button onClick={filterButton}>6個月</button>
-              <button onClick={filterButton}>1年</button>
-            </div>
+          <div className="selector">
+            <select id="painPart" value="none" name="painPart" onChange={getPainPart}>
+              <option value="none" defaultValue="selected" disabled hidden></option>
+              <option value="左大腿">左大腿</option>
+              <option value="右大腿">右大腿</option>
+              <option value="左小腿">左小腿</option>
+              <option value="右小腿">右小腿</option>
+              <option value="左手臂">左手臂</option>
+              <option value="右手臂">右手臂</option>
+            </select>
           </div>
-          <div className="third">
-            <div className="block">
-              <div className="block_content">
-                <img src={icon_clock} alt="" />
-              </div>
-              <span>日期</span>    
-            </div>
-            <div className="block">
-              <div className="block_content">
-                
-              </div>
-              <span>部位名稱</span>
-            </div>
-            <div className="block">
-              <div className="block_content">
-                <img src="clock.jpg" alt="" />
-              </div>
-              <span>症狀</span>
-            </div>
-            <div className="block">
-              <div className="block_content">
-                <img src="clock.jpg" alt="" />   
-              </div>
-              <span>時間</span>
-            </div>
+            <div className="select"><span>疼痛等級</span></div>
+        </div>
+        <div className="second">
+          <div className="title">
+            <span><AiOutlineSearch />最近歷史紀錄/查詢</span>
+            <span className="right">疼痛強度</span>
           </div>
-          <div className="forth">
-            <table>
-              <tbody>
-                <tr>
-                    <td className="td_title">持續時間：</td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td className="td_title">其他描述：</td>
-                    <td></td>
-                </tr>  
-              </tbody>
-            </table>
+          <ReactEcharts className={formState} option={options} />
+          <div className="choice">
+            <button className="active" onClick={filterButton}>1週</button>
+            <button onClick={filterButton}>1個月</button>
+            <button onClick={filterButton}>3個月</button>
+            <button onClick={filterButton}>6個月</button>
+            <button onClick={filterButton}>1年</button>
           </div>
+        </div>
+        <div className="third">
+          <div className="block">
+            <div className="block_content">
+              <img src={icon_clock} alt="" />
+            </div>
+            <span>日期</span>    
+          </div>
+          <div className="block">
+            <div className="block_content">
+              
+            </div>
+            <span>部位名稱</span>
+          </div>
+          <div className="block">
+            <div className="block_content">
+              <img src="clock.jpg" alt="" />
+            </div>
+            <span>症狀</span>
+          </div>
+          <div className="block">
+            <div className="block_content">
+              <img src="clock.jpg" alt="" />   
+            </div>
+            <span>時間</span>
+          </div>
+        </div>
+        <div className="forth">
+          <table>
+            <tbody>
+              <tr>
+                  <td className="td_title">持續時間：</td>
+                  <td></td>
+              </tr>
+              <tr>
+                  <td className="td_title">其他描述：</td>
+                  <td></td>
+              </tr>  
+            </tbody>
+          </table>
+        </div>
         </div>
       </footer>
       <RecordPage record={record} updateRecordState={updateRecordState} />

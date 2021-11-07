@@ -72,10 +72,27 @@
         .pain_des {
             width: 100%;
             .first {
+                position: relative;
                 width: 80%;
-                margin: 0 auto;
+                margin: 0rem auto 0 auto;
                 display: flex;
-                div {
+                justify-content: center;
+                align-items: center;
+                .selector {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 50%;
+                    margin: 2.5px;
+                    padding: 0 15px;
+                    opacity: 0;
+                    select {
+                        height: 70px;
+                        width: 100%;
+                    }
+                }
+                .select {
+                    position: relative;
                     width: 50%;
                     margin: 2.5px;
                     padding: 0 10px;
@@ -85,6 +102,20 @@
                     span {
                         font-size: 12px;
                         font-weight: bold;
+                        color: white;
+                    }
+                    .part {
+                        width: fit-content;
+                        font-size: 28px;
+                        letter-spacing: 2.5px;
+                        position: absolute;
+                        bottom: 5px;
+                        right: 10px;
+                    }
+                    .level {
+                        font-weight: bold;
+                        font-size: 32px;
+                        text-align: center;
                         color: white;
                     }
                 }
@@ -170,12 +201,12 @@
                         height: 35px;
                         width: 50px;
                         margin: 0 auto;
-                        img{
+                        img {
                             margin: 7.5px auto 0 auto;
                             width: 75%;
                         }
                     }
-                    span{
+                    span {
                         display: flex;
                         justify-content: center;
                         align-items: center;
@@ -184,7 +215,7 @@
                     }
                 }
             }
-            .forth{
+            .forth {
                 width: 80%;
                 margin: 3px auto;
                 display: flex;
@@ -195,21 +226,20 @@
                 font-size: 12px;
                 color: #1298e6;
                 padding: 10px 10px 20px 10px;
-                table{
+                table {
                     padding: 0;
                     margin: 0;
-                    tbody{
+                    tbody {
                         padding: 0;
                         margin: 0;
-                        td{
+                        td {
                             padding: 0;
                         }
-                        .td_title{
+                        .td_title {
                             display: flex;
                             white-space: nowrap;
                         }
                     }
-        
                 }
             }
         }
