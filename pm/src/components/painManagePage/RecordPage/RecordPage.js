@@ -41,8 +41,9 @@ function RecordPage(props) {
     updatePainTime(formattedDateTime)
   }
   const getPainPart = (e) =>{
-    var painPart = document.getElementById('painPart').value;
-    setPainPart(painPart);
+    // console.log()
+    var signPainPart = document.getElementById('signPainPart').value;
+    setPainPart(signPainPart);
   }
   const natureClick = (e) =>{
     var natureChioce = document.querySelectorAll('.nature_choice');
@@ -94,7 +95,8 @@ function RecordPage(props) {
             <span className="part">{ painPart }</span>
           </div>
           <div className="selector">
-            <select id="painPart" name="painPart" onChange={getPainPart}>
+            <select id="signPainPart" value="none" name="signPainPart" onChange={getPainPart}>
+              <option value="none" defaultValue="selected" disabled hidden></option>
               <option value="左大腿">左大腿</option>
               <option value="右大腿">右大腿</option>
               <option value="左小腿">左小腿</option>

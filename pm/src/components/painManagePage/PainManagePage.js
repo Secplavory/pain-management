@@ -2,7 +2,7 @@ import './PainManagePage.scss'
 import * as THREE from 'three'
 import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls'
 import {GLTFLoader} from 'three/examples/jsm/loaders/GLTFLoader'
-import {useEffect, useState} from 'react'
+import {useEffect, useState, useRef} from 'react'
 import ReactEcharts from 'echarts-for-react'
 import { AiOutlineSearch } from "react-icons/ai";
 import RecordPage from './RecordPage/RecordPage.js'
@@ -21,22 +21,31 @@ function PainManagePage() {
   const [footerClassName,setFooterClassName] = useState(" show");
   const [formState, setFormState] = useState("");
   const [record, setRecord] = useState(false);
-  const [painPart,setPainPart] = useState("");
+  const [painPart,setPainPart] = useState("部位名稱");
+  const [painLevel,setPainLevel] = useState();
+  const [painDate,setPainDate] = useState("日期");
+  const [painKind,setPainKind] = useState("症狀");
+  const [painTime,setPainTime] = useState("時間");
+  const [painContinue,setPainContinue] = useState(" ");
+  const [painOther,setPainOther] = useState(" ");
+
+  const chart = useRef(null);
+  // console.log(chart)
   var time_during = "1週";
   var target_data;
-  // console.log(document.getElementById('painPart').value)
+
   const options = {
     grid: { top: 50, right: 18, bottom: 24, left: 48 },
     xAxis: {
       type: 'category',
-      // data: ['11/1', '11/2', '11/3', '11/4', '11/5', '11/6', '11/7'],
+      data: [],
     },
     yAxis: {
       type: 'value',
     },
     series: [
       {
-        // data: [820, 932, 901, 934, 1290, 1330, 1320],
+        data: [],
         type: 'line',
         smooth: true,
       },
@@ -45,13 +54,53 @@ function PainManagePage() {
       trigger: 'axis',
     },
   };
+  const options2 = {
+    grid: { top: 50, right: 18, bottom: 24, left: 48 },
+    xAxis: {
+      type: 'category',
+      data: [],
+    },
+    yAxis: {
+      type: 'value',
+    },
+    series: [
+      {
+        data: [],
+        type: 'line',
+        smooth: true,
+      },
+    ],
+    tooltip: {
+      trigger: 'axis',
+    },
+  };
+  const resetChartData = (e) =>{
+
+    if (chart && chart.current) {
+      options2.series[0].data = target_data['疼痛等級'];
+      options2.xAxis.data = target_data['日期'];
+      chart.current.getEchartsInstance().dispose();
+      chart.current.getEchartsInstance().setOption(options2);
+      chart.current.getEchartsInstance().on('click', function (params) {
+        setPainDetail(target_data[params.name])
+      });
+    }
+  }
+  const setPainDetail = (data) =>{
+    console.log(data)
+    setPainLevel(data['疼痛等級'])
+    setPainDate(data['時間'])
+    setPainKind(data['性質'])
+    setPainTime(data['時段'])
+    setPainContinue(data['持續時間'])
+    setPainOther(data['其他描述'])
+  }
   const getPainPart = (e) =>{
     var pain_Part = document.getElementById('painPart').value;
-    setPainPart(pain_Part); 
-    // target_data = record_data[painPart][time_during];
+    setPainPart(pain_Part);
     setPainPart(function(prev){
       target_data = record_data[prev][time_during];
-      console.log(target_data);
+      resetChartData();
       return prev;
     });
   }
@@ -86,7 +135,7 @@ function PainManagePage() {
     time_during = e.target.textContent;
     if(painPart != ''){
       target_data = record_data[painPart][time_during];
-      console.log(target_data);
+      resetChartData();
     }
   }
   const updateRecordState = (newRecordState) => {
@@ -99,6 +148,7 @@ function PainManagePage() {
       setRecordButtonClassName("record_button")
     }
   }
+
   return (
     <div id="PainCanvas">
       <div className={recordButtonClassName} onClick={()=> updateRecordState(true)}>
@@ -124,14 +174,17 @@ function PainManagePage() {
               <option value="右手臂">右手臂</option>
             </select>
           </div>
-            <div className="select"><span>疼痛等級</span></div>
+            <div className="select">
+              <span>疼痛等級</span>
+              <h1 className="level">{ painLevel }</h1>
+            </div>
         </div>
         <div className="second">
           <div className="title">
             <span><AiOutlineSearch />最近歷史紀錄/查詢</span>
             <span className="right">疼痛強度</span>
           </div>
-          <ReactEcharts className={formState} option={options} />
+          <ReactEcharts className={formState} option={options} ref={chart} />
           <div className="choice">
             <button className="active" onClick={filterButton}>1週</button>
             <button onClick={filterButton}>1個月</button>
@@ -145,25 +198,25 @@ function PainManagePage() {
             <div className="block_content">
               <img src={icon_clock} alt="" />
             </div>
-            <span>日期</span>    
+            <span>{ painDate }</span>    
           </div>
           <div className="block">
             <div className="block_content">
               
             </div>
-            <span>部位名稱</span>
+            <span>{ painPart }</span>
           </div>
           <div className="block">
             <div className="block_content">
               <img src="clock.jpg" alt="" />
             </div>
-            <span>症狀</span>
+            <span>{ painKind }</span>
           </div>
           <div className="block">
             <div className="block_content">
               <img src="clock.jpg" alt="" />   
             </div>
-            <span>時間</span>
+            <span>{ painTime }</span>
           </div>
         </div>
         <div className="forth">
@@ -171,11 +224,11 @@ function PainManagePage() {
             <tbody>
               <tr>
                   <td className="td_title">持續時間：</td>
-                  <td></td>
+                  <td>{ painContinue }</td>
               </tr>
               <tr>
                   <td className="td_title">其他描述：</td>
-                  <td></td>
+                  <td>{ painOther }</td>
               </tr>  
             </tbody>
           </table>
@@ -185,6 +238,7 @@ function PainManagePage() {
       <RecordPage record={record} updateRecordState={updateRecordState} />
     </div>
   );
+  
 }
 
 function CanvasInit(){
