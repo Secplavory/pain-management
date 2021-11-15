@@ -1,5 +1,7 @@
 import './PainManagePage.scss'
 import * as THREE from 'three'
+
+import ExportDownloadFile from '../../export/Export匯出.csv'
 import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls'
 import {GLTFLoader} from 'three/examples/jsm/loaders/GLTFLoader'
 import {useEffect, useState, useRef} from 'react'
@@ -18,6 +20,7 @@ function PainManagePage() {
   const canvasContent = CanvasInit();
   OnCanvasResize(canvasContent);
   const [recordButtonClassName,setRecordButtonClassName] = useState("record_button show");
+  const [exportButtonClassName,setExportButtonClassName] = useState("export_button show");
   const [footerClassName,setFooterClassName] = useState(" show");
   const [formState, setFormState] = useState("");
   const [record, setRecord] = useState(false);
@@ -116,21 +119,29 @@ function PainManagePage() {
   function showRecordMenu(state){
     if(state === "record_button"){
       setRecordButtonClassName(state);
+      setExportButtonClassName("export_button");
     }else
     if(state === " show"){
       if(showRecord === false){
         setRecordButtonClassName(function(prev){
           return prev + state;
         });
+        setExportButtonClassName(function(prev){
+          return prev + state;
+        });
         showRecord = true;
         setFooterClassName(" show");
       } else{
         setRecordButtonClassName("record_button");
+        setExportButtonClassName("export_button");
         setFooterClassName("");
         showRecord = false;
       }
     }else{
       setRecordButtonClassName(function(prev){
+        return prev + state;
+      });
+      setExportButtonClassName(function(prev){
         return prev + state;
       });
     }
@@ -152,15 +163,22 @@ function PainManagePage() {
     setRecord(newRecordState);
     if(newRecordState){
       setRecordButtonClassName("record_button hide")
+      
+      setExportButtonClassName("export_button hide");
       setFooterClassName("");
       showRecord = false;
     }else{
       setRecordButtonClassName("record_button")
+      setExportButtonClassName("export_button");
     }
   }
 
   return (
     <div id="PainCanvas">
+      <a className={exportButtonClassName} onClick={()=> console.log("active")} href={ ExportDownloadFile }>
+        <div className="top">-</div>
+        <div className="bottom">匯出</div>
+      </a>
       <div className={recordButtonClassName} onClick={()=> updateRecordState(true)}>
         <div className="top">+</div>
         <div className="bottom">紀錄</div>

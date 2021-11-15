@@ -70,15 +70,16 @@ function RecordPage(props) {
     e.target.classList.add('active');
   }
   const controlRecord = (state)=>{
-    // props.updateRecordState(false);
-    if(state === ' show'){
-      setRecordClassName(function(prev){
-        return prev + state;
-      });
-      setNowDate();
-    }else{
-      props.updateRecordState(false);
-      setRecordClassName('record');
+    if(painPart != ''){
+      if(state === ' show'){
+        setRecordClassName(function(prev){
+          return prev + state;
+        });
+        setNowDate();
+      }else{
+        props.updateRecordState(false);
+        setRecordClassName('record');
+      }
     }
   }
   const painLevelBar = (e)=>{

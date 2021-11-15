@@ -38,12 +38,48 @@
             top: -17px;
         }
     }
+    .export_button {
+        z-index: 99;
+        position: fixed;
+        right: 0.5rem;
+        bottom: 5.5rem;
+        width: 3rem;
+        height: 3rem;
+        border-radius: 999rem;
+        background-color: rgb(54, 105, 201);
+        transition: all 0.5s;
+        display: inline;
+        div {
+            min-width: 3rem;
+            color: white;
+            padding: 0;
+            margin: 0;
+            position: relative;
+            text-align: center;
+        }
+        .top {
+            font-size: 28px;
+            top: -5px;
+        }
+        .bottom {
+            font-size: 0.625rem;
+            top: -17px;
+        }
+    }
     .record_button.show {
         display: inline;
-        bottom: 26.5rem;
+        bottom: 25rem;
         transition: all 0.5s;
     }
     .record_button.hide {
+        display: none;
+    }
+    .export_button.show {
+        display: inline;
+        bottom: 28.5rem;
+        transition: all 0.5s;
+    }
+    .export_button.hide {
         display: none;
     }
     footer {
@@ -247,7 +283,7 @@
         }
     }
     footer.show {
-        height: 26rem;
+        height: 24.5rem;
         transition: all 0.5s;
         overflow-y: auto;
     }
