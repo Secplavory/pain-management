@@ -95,12 +95,21 @@ function PainManagePage() {
     setPainContinue(data['持續時間'])
     setPainOther(data['其他描述'])
   }
+  const initPainDetail = () =>{
+    setPainLevel()
+    setPainDate("日期")
+    setPainKind("症狀")
+    setPainTime("時間")
+    setPainContinue("  ")
+    setPainOther("  ")
+  }
   const getPainPart = (e) =>{
     var pain_Part = document.getElementById('painPart').value;
     setPainPart(pain_Part);
     setPainPart(function(prev){
       target_data = record_data[prev][time_during];
       resetChartData();
+      initPainDetail();
       return prev;
     });
   }
@@ -133,9 +142,10 @@ function PainManagePage() {
     });
     e.target.classList.add("active");
     time_during = e.target.textContent;
-    if(painPart != ''){
+    if(painPart != '部位名稱'){
       target_data = record_data[painPart][time_during];
       resetChartData();
+      initPainDetail();
     }
   }
   const updateRecordState = (newRecordState) => {
