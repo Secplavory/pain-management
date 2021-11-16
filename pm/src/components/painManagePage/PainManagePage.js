@@ -1,13 +1,13 @@
 import './PainManagePage.scss'
 import * as THREE from 'three'
 
-import ExportDownloadFile from '../../export/Export匯出.csv'
 import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls'
 import {GLTFLoader} from 'three/examples/jsm/loaders/GLTFLoader'
 import {useEffect, useState, useRef} from 'react'
 import ReactEcharts from 'echarts-for-react'
 import { AiOutlineSearch } from "react-icons/ai";
 import RecordPage from './RecordPage/RecordPage.js'
+import ExportPage from './ExportPage/ExportPage.js'
 
 // import icon  
 import icon_clock from '../../asserts/PainManagePage/icon-clock.jpg'
@@ -31,7 +31,11 @@ function PainManagePage() {
   const [painTime,setPainTime] = useState("時間");
   const [painContinue,setPainContinue] = useState(" ");
   const [painOther,setPainOther] = useState(" ");
+  const [exportPageClassName,setExportPageClassName] = useState("");
 
+  const changeExportPageClassName = (state)=>{
+    setExportPageClassName(state);
+  };
   const chart = useRef(null);
   // console.log(chart)
   var time_during = "1週";
@@ -172,10 +176,10 @@ function PainManagePage() {
       setExportButtonClassName("export_button");
     }
   }
-
+  // href={ ExportDownloadFile }
   return (
     <div id="PainCanvas">
-      <a className={exportButtonClassName} onClick={()=> console.log("active")} href={ ExportDownloadFile }>
+      <a className={exportButtonClassName} onClick={()=> changeExportPageClassName("show") } >
         <div className="top">-</div>
         <div className="bottom">匯出</div>
       </a>
@@ -263,6 +267,7 @@ function PainManagePage() {
         </div>
         </div>
       </footer>
+      <ExportPage class={ exportPageClassName } setExportPageClassName={ changeExportPageClassName } />
       <RecordPage record={record} updateRecordState={updateRecordState} />
     </div>
   );
