@@ -11,7 +11,7 @@ import throbbing_pain from '../../../asserts/PainManagePage/throbbing_pain.jpg'
 import tingling_pain from '../../../asserts/PainManagePage/tingling_pain.jpg'
 import record_img from '../../../asserts/PainManagePage/record.jpg'
 import record_unactive from '../../../asserts/PainManagePage/record_unactive.png'
-import record_active from '../../../asserts/PainManagePage/record_active.jpg'
+// import record_active from '../../../asserts/PainManagePage/record_active.jpg'
 import icon_clock from '../../../asserts/PainManagePage/icon-clock.jpg'
 
 function RecordPage(props) {
@@ -41,7 +41,6 @@ function RecordPage(props) {
     updatePainTime(formattedDateTime)
   }
   const getPainPart = (e) =>{
-    // console.log()
     var signPainPart = document.getElementById('signPainPart').value;
     setPainPart(signPainPart);
   }
@@ -70,7 +69,7 @@ function RecordPage(props) {
     e.target.classList.add('active');
   }
   const controlRecord = (state)=>{
-    if(painPart != ''){
+    if(painPart !== ''){
       if(state === ' show'){
         setRecordClassName(function(prev){
           return prev + state;

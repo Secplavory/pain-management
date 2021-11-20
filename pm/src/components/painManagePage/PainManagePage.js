@@ -22,7 +22,7 @@ function PainManagePage() {
   const [recordButtonClassName,setRecordButtonClassName] = useState("record_button show");
   const [exportButtonClassName,setExportButtonClassName] = useState("export_button show");
   const [footerClassName,setFooterClassName] = useState(" show");
-  const [formState, setFormState] = useState("");
+  // const [formState, setFormState] = useState("");
   const [record, setRecord] = useState(false);
   const [painPart,setPainPart] = useState("部位名稱");
   const [painLevel,setPainLevel] = useState();
@@ -157,7 +157,7 @@ function PainManagePage() {
     });
     e.target.classList.add("active");
     time_during = e.target.textContent;
-    if(painPart != '部位名稱'){
+    if(painPart !== '部位名稱'){
       target_data = record_data[painPart][time_during];
       resetChartData();
       initPainDetail();
@@ -176,13 +176,12 @@ function PainManagePage() {
       setExportButtonClassName("export_button");
     }
   }
-  // href={ ExportDownloadFile }
   return (
     <div id="PainCanvas">
-      <a className={exportButtonClassName} onClick={()=> changeExportPageClassName("show") } >
+      <div className={exportButtonClassName} onClick={()=> changeExportPageClassName("show") } >
         <div className="top">-</div>
         <div className="bottom">匯出</div>
-      </a>
+      </div>
       <div className={recordButtonClassName} onClick={()=> updateRecordState(true)}>
         <div className="top">+</div>
         <div className="bottom">紀錄</div>
@@ -216,7 +215,8 @@ function PainManagePage() {
             <span><AiOutlineSearch />最近歷史紀錄/查詢</span>
             <span className="right">疼痛強度</span>
           </div>
-          <ReactEcharts className={formState} option={options} ref={chart} />
+          {/* <ReactEcharts className={formState} option={options} ref={chart} /> */}
+          <ReactEcharts option={options} ref={chart} />
           <div className="choice">
             <button className="active" onClick={filterButton}>1週</button>
             <button onClick={filterButton}>1個月</button>

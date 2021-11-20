@@ -1,39 +1,40 @@
-import {useState} from 'react'
+// import {useState} from 'react'
 import './ExportPage.scss'
 
 import ExportDownloadFile1Week from '../../../export/Export匯出_1週.csv'
-import ExportDownloadFile1Month from '../../../export/Export匯出_1個月.csv'
-import ExportDownloadFile3Month from '../../../export/Export匯出_3個月.csv'
-import ExportDownloadFile6Month from '../../../export/Export匯出_6個月.csv'
-import ExportDownloadFile1Year from '../../../export/Export匯出_一年.csv'
+// import ExportDownloadFile1Month from '../../../export/Export匯出_1個月.csv'
+// import ExportDownloadFile3Month from '../../../export/Export匯出_3個月.csv'
+// import ExportDownloadFile6Month from '../../../export/Export匯出_6個月.csv'
+// import ExportDownloadFile1Year from '../../../export/Export匯出_一年.csv'
 
 function ExportPage(props) {
-  const [during, setDuring] = useState("1週");
-  const [exportFile, setExportFile] = useState(ExportDownloadFile1Week);
+//   const [during, setDuring] = useState("1週");
+//   const [exportFile, setExportFile] = useState(ExportDownloadFile1Week);
+  const exportFile = ExportDownloadFile1Week
   const getDuring = ()=>{
-    var during_choice = document.getElementById('during').value;
-    setDuring(during_choice);
-    setDuring(function(prev){
-        exportData(prev);
-        return prev;
-    })
+    // var during_choice = document.getElementById('during').value;
+    // setDuring(during_choice);
+    // setDuring(function(prev){
+    //     exportData(prev);
+    //     return prev;
+    // })
   };
-  const exportData = (state)=>{
-    if(state === "1週"){
-        setExportFile(ExportDownloadFile1Week);
-    }else
-    if(state === "1個月"){
-        setExportFile(ExportDownloadFile1Month);
-    }else
-    if(state === "3個月"){
-        setExportFile(ExportDownloadFile3Month);
-    }else
-    if(state === "6個月"){
-        setExportFile(ExportDownloadFile6Month);
-    }else{
-        setExportFile(ExportDownloadFile1Year);
-    }
-  };
+//   const exportData = (state)=>{
+//     if(state === "1週"){
+//         setExportFile(ExportDownloadFile1Week);
+//     }else
+//     if(state === "1個月"){
+//         setExportFile(ExportDownloadFile1Month);
+//     }else
+//     if(state === "3個月"){
+//         setExportFile(ExportDownloadFile3Month);
+//     }else
+//     if(state === "6個月"){
+//         setExportFile(ExportDownloadFile6Month);
+//     }else{
+//         setExportFile(ExportDownloadFile1Year);
+//     }
+//   };
   return (
     <div id="export" className={ props.class }>
         <div className="back" onClick={ ()=> props.setExportPageClassName("") }></div>
