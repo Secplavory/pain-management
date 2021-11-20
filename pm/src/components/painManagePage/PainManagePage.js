@@ -37,7 +37,6 @@ function PainManagePage() {
     setExportPageClassName(state);
   };
   const chart = useRef(null);
-  // console.log(chart)
   var time_during = "1週";
   var target_data;
 
