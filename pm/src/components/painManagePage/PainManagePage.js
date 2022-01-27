@@ -14,10 +14,12 @@ import icon_clock from '../../asserts/PainManagePage/icon-clock.jpg'
 // import data  
 import record_data from '../../data/record_data.json'
 
+
 var showRecord = true;
+var canvasContent;
 
 function PainManagePage() {
-  const canvasContent = CanvasInit();
+  canvasContent = CanvasInit();
   OnCanvasResize(canvasContent);
   const [recordButtonClassName,setRecordButtonClassName] = useState("record_button show");
   const [exportButtonClassName,setExportButtonClassName] = useState("export_button show");
@@ -118,6 +120,30 @@ function PainManagePage() {
       initPainDetail();
       return prev;
     });
+    setCamera(pain_Part)
+  }
+  function setCamera(pain_Part){
+    const setPosition = (camera, body) => {
+      canvasContent.camera.position.set(camera.x, camera.y, camera.z)
+      canvasContent.scene.getObjectByName("body").position.set(
+        body.x, body.y, body.z
+      )
+    }
+    switch(pain_Part){
+      case '下顎':
+        setPosition({x:0,y:1,z:3}, {x:0,y:-0.1,z:0})
+        break
+      case '肩胛骨':
+        setPosition({x:0,y:3,z:3})
+        break
+      case '肩膀':
+        setPosition({x:0,y:3,z:3})
+        break
+      default:
+        setPosition({x:0,y:3,z:3})
+        break
+    }
+    
   }
   function showRecordMenu(state){
     if(state === "record_button"){
@@ -196,12 +222,26 @@ function PainManagePage() {
           <div className="selector">
             <select id="painPart" value="none" name="painPart" onChange={getPainPart}>
               <option value="none" defaultValue="selected" disabled hidden></option>
-              <option value="左大腿">左大腿</option>
-              <option value="右大腿">右大腿</option>
-              <option value="左小腿">左小腿</option>
-              <option value="右小腿">右小腿</option>
-              <option value="左手臂">左手臂</option>
-              <option value="右手臂">右手臂</option>
+              <option value="下顎">下顎</option>
+              <option value="肩胛骨">肩胛骨</option>
+              <option value="肩膀">肩膀</option>
+              <option value="胸部">胸部</option>
+              <option value="右手肘">右手肘</option>
+              <option value="右手腕">右手腕</option>
+              <option value="右手">右手</option>
+              <option value="左手肘">左手肘</option>
+              <option value="左手腕">左手腕</option>
+              <option value="左手">左手</option>
+              <option value="右臀">右臀</option>
+              <option value="左臀">左臀</option>
+              <option value="右膝">右膝</option>
+              <option value="左膝">左膝</option>
+              <option value="右踝">右踝</option>
+              <option value="左踝">左踝</option>
+              <option value="右腳跟">右腳跟</option>
+              <option value="左腳跟">左腳跟</option>
+              <option value="右腳">右腳</option>
+              <option value="左腳">左腳</option>
             </select>
           </div>
             <div className="select">
