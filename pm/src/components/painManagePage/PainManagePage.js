@@ -1,5 +1,6 @@
 import './PainManagePage.scss'
 import * as THREE from 'three'
+import gsap from 'gsap'
 
 import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls'
 import {GLTFLoader} from 'three/examples/jsm/loaders/GLTFLoader'
@@ -26,7 +27,7 @@ function PainManagePage() {
   const [footerClassName,setFooterClassName] = useState(" show");
   // const [formState, setFormState] = useState("");
   const [record, setRecord] = useState(false);
-  const [painPart,setPainPart] = useState("部位名稱");
+  const [painPart,setPainPart] = useState("全身");
   const [painLevel,setPainLevel] = useState();
   const [painDate,setPainDate] = useState("日期");
   const [painKind,setPainKind] = useState("症狀");
@@ -34,14 +35,13 @@ function PainManagePage() {
   const [painContinue,setPainContinue] = useState(" ");
   const [painOther,setPainOther] = useState(" ");
   const [exportPageClassName,setExportPageClassName] = useState("");
-
   const changeExportPageClassName = (state)=>{
     setExportPageClassName(state);
   };
   const chart = useRef(null);
   var time_during = "1週";
   var target_data;
-
+  var optionList = Object.keys(record_data)
   const options = {
     grid: { top: 50, right: 18, bottom: 24, left: 48 },
     xAxis: {
@@ -113,37 +113,83 @@ function PainManagePage() {
   }
   const getPainPart = (e) =>{
     var pain_Part = document.getElementById('painPart').value;
-    setPainPart(pain_Part);
-    setPainPart(function(prev){
-      target_data = record_data[prev][time_during];
-      resetChartData();
-      initPainDetail();
-      return prev;
-    });
+    console.log(pain_Part)
     setCamera(pain_Part)
+    setPainPart(pain_Part);
+    if(pain_Part !== "全身"){
+      setPainPart(function(prev){
+        target_data = record_data[prev][time_during];
+        resetChartData();
+        initPainDetail();
+        return prev;
+      });
+    }else{
+      chart.current.getEchartsInstance().dispose();
+      initPainDetail()
+    }
   }
   function setCamera(pain_Part){
     const setPosition = (camera, body) => {
-      canvasContent.camera.position.set(camera.x, camera.y, camera.z)
-      canvasContent.scene.getObjectByName("body").position.set(
-        body.x, body.y, body.z
-      )
+      gsap.to(canvasContent.camera.position, {
+        duration: 1,
+        x: camera.x,
+        y: camera.y,
+        z: camera.z
+      })
+      gsap.to(canvasContent.scene.getObjectByName("body").position, {
+        duration: 1,
+        x: body.x,
+        y: body.y,
+        z: body.z
+      })
     }
     switch(pain_Part){
       case '下顎':
         setPosition({x:0,y:1,z:3}, {x:0,y:-0.1,z:0})
         break
       case '肩胛骨':
-        setPosition({x:0,y:3,z:3})
+        setPosition({x:0,y:1,z:3}, {x:0,y:0.5,z:0})
         break
       case '肩膀':
-        setPosition({x:0,y:3,z:3})
+        setPosition({x:0,y:1,z:3}, {x:0,y:0.7,z:0})
         break
+      case '胸部':
+        setPosition({x:0,y:1,z:3}, {x:0,y:0.9,z:0})
+        break
+      case '腹部':
+        setPosition({x:0,y:1,z:3}, {x:0,y:2,z:-1})
+        break
+      case '手肘':
+        setPosition({x:0,y:1,z:3}, {x:0,y:2,z:-1.5})
+        break
+      case '手腕':
+        setPosition({x:0,y:1,z:3}, {x:0,y:2.5,z:-2.5})
+        break
+      case '手掌':
+        setPosition({x:0,y:1,z:3}, {x:0,y:3,z:-2.5})
+        break
+      case '臀部':
+        setPosition({x:0,y:1,z:3}, {x:0,y:2.8,z:-1})
+        break
+      case '膝蓋':
+        setPosition({x:0,y:1,z:3}, {x:0,y:4.5,z:-1})
+        break
+      case '小腿':
+        setPosition({x:0,y:1,z:3}, {x:0,y:5.3,z:-1})
+        break
+      case '腳踝':
+        setPosition({x:0,y:1,z:3}, {x:0,y:6,z:-1})
+        break      
+      case '腳跟':
+        setPosition({x:0,y:1,z:3}, {x:0,y:6,z:-1})
+        break      
+      case '腳掌':
+        setPosition({x:0,y:1,z:3}, {x:0,y:6,z:-1})
+        break      
       default:
-        setPosition({x:0,y:3,z:3})
+        setPosition({x:3,y:2,z:5}, {x:0,y:1.2,z:0})
         break
     }
-    
   }
   function showRecordMenu(state){
     if(state === "record_button"){
@@ -182,7 +228,7 @@ function PainManagePage() {
     });
     e.target.classList.add("active");
     time_during = e.target.textContent;
-    if(painPart !== '部位名稱'){
+    if(painPart !== '全身'){
       target_data = record_data[painPart][time_during];
       resetChartData();
       initPainDetail();
@@ -220,28 +266,11 @@ function PainManagePage() {
             <span className="part">{ painPart }</span>
           </div>
           <div className="selector">
-            <select id="painPart" value="none" name="painPart" onChange={getPainPart}>
-              <option value="none" defaultValue="selected" disabled hidden></option>
-              <option value="下顎">下顎</option>
-              <option value="肩胛骨">肩胛骨</option>
-              <option value="肩膀">肩膀</option>
-              <option value="胸部">胸部</option>
-              <option value="右手肘">右手肘</option>
-              <option value="右手腕">右手腕</option>
-              <option value="右手">右手</option>
-              <option value="左手肘">左手肘</option>
-              <option value="左手腕">左手腕</option>
-              <option value="左手">左手</option>
-              <option value="右臀">右臀</option>
-              <option value="左臀">左臀</option>
-              <option value="右膝">右膝</option>
-              <option value="左膝">左膝</option>
-              <option value="右踝">右踝</option>
-              <option value="左踝">左踝</option>
-              <option value="右腳跟">右腳跟</option>
-              <option value="左腳跟">左腳跟</option>
-              <option value="右腳">右腳</option>
-              <option value="左腳">左腳</option>
+            <select id="painPart" onChange={getPainPart}>
+              <option value="全身">全身</option>
+              {optionList.map((value, index)=>{
+                return <option key={index} value={value}>{value}</option>
+              })}
             </select>
           </div>
             <div className="select">
