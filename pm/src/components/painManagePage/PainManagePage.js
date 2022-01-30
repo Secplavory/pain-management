@@ -95,7 +95,6 @@ function PainManagePage() {
     }
   }
   const setPainDetail = (data) =>{
-    console.log(data)
     setPainLevel(data['疼痛等級'])
     setPainDate(data['時間'])
     setPainKind(data['性質'])
@@ -113,8 +112,7 @@ function PainManagePage() {
   }
   const getPainPart = (e) =>{
     var pain_Part = document.getElementById('painPart').value;
-    console.log(pain_Part)
-    setCamera(pain_Part)
+    setCanvasObjects(pain_Part)
     setPainPart(pain_Part);
     if(pain_Part !== "全身"){
       setPainPart(function(prev){
@@ -128,68 +126,136 @@ function PainManagePage() {
       initPainDetail()
     }
   }
-  function setCamera(pain_Part){
-    const setPosition = (camera, body) => {
-      gsap.to(canvasContent.camera.position, {
-        duration: 1,
-        x: camera.x,
-        y: camera.y,
-        z: camera.z
-      })
-      gsap.to(canvasContent.scene.getObjectByName("body").position, {
-        duration: 1,
-        x: body.x,
-        y: body.y,
-        z: body.z
-      })
+  function setCanvasObjects(pain_Part){
+
+    while(canvasContent.scene.getObjectByName("spotLight")){
+      canvasContent.scene.remove(canvasContent.scene.getObjectByName("spotLight"))
     }
+
+    var setCanvasObjectsAttribute = (camera, body, lightList=[]) => {
+    gsap.to(canvasContent.camera.position, {
+      duration: 1,
+      x: camera.x,
+      y: camera.y,
+      z: camera.z
+    })
+    gsap.to(canvasContent.scene.getObjectByName("body").position, {
+      duration: 1,
+      x: body.x,
+      y: body.y,
+      z: body.z
+    })
+    var cursorCube = canvasContent.scene.getObjectByName("cursorCube")
+    cursorCube.position.set(0,1,.5)
+    
+    setTimeout(()=>{
+      lightList.forEach(ele => {
+        var spotLight = new THREE.SpotLight( 0xff0000, 0, ele.distance, ele.angle)
+        spotLight.name = "spotLight"
+        spotLight.target = cursorCube
+        spotLight.position.set(ele.x, ele.y, ele.z)
+        canvasContent.scene.add(spotLight)
+        gsap.to(spotLight,{
+          duration:.5,
+          intensity: ele.intensity
+        })
+      });
+    }, 1000)
+    }
+
     switch(pain_Part){
       case '下顎':
-        setPosition({x:0,y:1,z:3}, {x:0,y:-0.1,z:0})
+        setCanvasObjectsAttribute(
+            {x:0,y:1,z:3}, {x:0,y:-0.1,z:0},
+            [{intensity:.8,distance:1,angle:.5,x:.5,y:.9,z:.7},{intensity:.8,distance:1,angle:.5,x:-.5,y:.9,z:.7}]
+          )
         break
       case '肩胛骨':
-        setPosition({x:0,y:1,z:3}, {x:0,y:0.5,z:0})
+        setCanvasObjectsAttribute(
+            {x:0,y:1,z:3}, {x:0,y:0.5,z:0},
+            // [{intensity:.5,distance:1,angle:.5,x:.5,y:.8,z:.7}]
+          )
         break
       case '肩膀':
-        setPosition({x:0,y:1,z:3}, {x:0,y:0.7,z:0})
+        setCanvasObjectsAttribute(
+            {x:0,y:1,z:3}, {x:0,y:0.7,z:0},
+            // [{intensity:.5,distance:1,angle:.5,x:.5,y:.8,z:.7}]
+          )
         break
       case '胸部':
-        setPosition({x:0,y:1,z:3}, {x:0,y:0.9,z:0})
+        setCanvasObjectsAttribute(
+            {x:0,y:1,z:3}, {x:0,y:0.9,z:0},
+            // [{intensity:.5,distance:1,angle:.5,x:.5,y:.8,z:.7}]
+          )
         break
       case '腹部':
-        setPosition({x:0,y:1,z:3}, {x:0,y:2,z:-1})
+        setCanvasObjectsAttribute(
+            {x:0,y:1,z:3}, {x:0,y:2,z:-1},
+            // [{intensity:.5,distance:1,angle:.5,x:.5,y:.8,z:.7}]
+          )
         break
       case '手肘':
-        setPosition({x:0,y:1,z:3}, {x:0,y:2,z:-1.5})
+        setCanvasObjectsAttribute(
+            {x:0,y:1,z:3}, {x:0,y:2,z:-1.5},
+            // [{intensity:.5,distance:1,angle:.5,x:.5,y:.8,z:.7}]
+          )
         break
       case '手腕':
-        setPosition({x:0,y:1,z:3}, {x:0,y:2.5,z:-2.5})
+        setCanvasObjectsAttribute(
+            {x:0,y:1,z:3}, {x:0,y:2.5,z:-2.5},
+            // [{intensity:.5,distance:1,angle:.5,x:.5,y:.8,z:.7}]
+          )
         break
       case '手掌':
-        setPosition({x:0,y:1,z:3}, {x:0,y:3,z:-2.5})
+        setCanvasObjectsAttribute(
+            {x:0,y:1,z:3}, {x:0,y:3,z:-2.5},
+            // [{intensity:.5,distance:1,angle:.5,x:.5,y:.8,z:.7}]
+          )
         break
       case '臀部':
-        setPosition({x:0,y:1,z:3}, {x:0,y:2.8,z:-1})
+        setCanvasObjectsAttribute(
+            {x:0,y:1,z:3}, {x:0,y:2.8,z:-1},
+            // [{intensity:.5,distance:1,angle:.5,x:.5,y:.8,z:.7}]
+          )
         break
       case '膝蓋':
-        setPosition({x:0,y:1,z:3}, {x:0,y:4.5,z:-1})
+        setCanvasObjectsAttribute(
+            {x:0,y:1,z:3}, {x:0,y:4.5,z:-1},
+            // [{intensity:.5,distance:1,angle:.5,x:.5,y:.8,z:.7}]
+          )
         break
       case '小腿':
-        setPosition({x:0,y:1,z:3}, {x:0,y:5.3,z:-1})
+        setCanvasObjectsAttribute(
+            {x:0,y:1,z:3}, {x:0,y:5.3,z:-1},
+            // [{intensity:.5,distance:1,angle:.5,x:.5,y:.8,z:.7}]
+          )
         break
       case '腳踝':
-        setPosition({x:0,y:1,z:3}, {x:0,y:6,z:-1})
+        setCanvasObjectsAttribute(
+            {x:0,y:1,z:3}, {x:0,y:6,z:-1},
+            // [{intensity:.5,distance:1,angle:.5,x:.5,y:.8,z:.7}]
+          )
         break      
       case '腳跟':
-        setPosition({x:0,y:1,z:3}, {x:0,y:6,z:-1})
+        setCanvasObjectsAttribute(
+            {x:0,y:1,z:3}, {x:0,y:6,z:-1},
+            // [{intensity:.5,distance:1,angle:.5,x:.5,y:.8,z:.7}]
+          )
         break      
       case '腳掌':
-        setPosition({x:0,y:1,z:3}, {x:0,y:6,z:-1})
+        setCanvasObjectsAttribute(
+            {x:0,y:1,z:3}, {x:0,y:6,z:-1},
+            // [{intensity:.5,distance:1,angle:.5,x:.5,y:.8,z:.7}]
+          )
         break      
       default:
-        setPosition({x:3,y:2,z:5}, {x:0,y:1.2,z:0})
+        setCanvasObjectsAttribute(
+            {x:3,y:2,z:5}, {x:0,y:1.2,z:0},
+            // [{intensity:.5,distance:1,angle:.5,x:.5,y:.8,z:.7}]
+          )
         break
     }
+
   }
   function showRecordMenu(state){
     if(state === "record_button"){
@@ -341,7 +407,6 @@ function PainManagePage() {
   );
   
 }
-
 function CanvasInit(){
   const [canvasContent, setCanvasContent] = useState({
     scene: undefined,
@@ -365,6 +430,11 @@ function CanvasInit(){
     const controls = new OrbitControls(camera, renderer.domElement);
     controls.enabled = false;
     controls.update();
+    const geometry = new THREE.BoxGeometry( 0,0,0 );
+    const material = new THREE.MeshNormalMaterial();
+    const cursorCube = new THREE.Mesh( geometry, material );
+    cursorCube.name = "cursorCube"
+    scene.add(cursorCube)
 
     const loader = new GLTFLoader();
     var body;
