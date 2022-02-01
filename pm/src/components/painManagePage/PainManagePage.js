@@ -184,8 +184,8 @@ function PainManagePage() {
         break
       case '胸部':
         setCanvasObjectsAttribute(
-            {x:0,y:1,z:3}, {x:0,y:0.9,z:0},
-            // [{intensity:.5,distance:1,angle:.5,x:.5,y:.8,z:.7}]
+            {x:0,y:1,z:3}, {x:0,y:0.9,z:0},{x:0,y:1,z:.2},
+            [{intensity:.8,distance:2,angle:.3,x:.8,y:1,z:1.2},{intensity:.8,distance:2,angle:.3,x:-.8,y:1,z:1.2}]
           )
         break
       case '腹部':
