@@ -1,5 +1,7 @@
 .App{
     overflow: hidden;
+    margin: 0 auto;
+    max-width: 600px;
     height: calc(100vh);
     #Navbar{
         z-index: 99;

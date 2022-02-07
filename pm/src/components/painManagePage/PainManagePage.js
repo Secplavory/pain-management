@@ -131,8 +131,11 @@ function PainManagePage() {
     while(canvasContent.scene.getObjectByName("spotLight")){
       canvasContent.scene.remove(canvasContent.scene.getObjectByName("spotLight"))
     }
+    while(canvasContent.scene.getObjectByName("cursorCube")){
+      canvasContent.scene.remove(canvasContent.scene.getObjectByName("cursorCube"))
+    }
 
-    var setCanvasObjectsAttribute = (camera, body, cursorCubePosition={x:0,y:1,z:.5}, lightList=[]) => {
+    var setCanvasObjectsAttribute = (camera, body, lightList=[]) => {
     gsap.to(canvasContent.camera.position, {
       duration: 1,
       x: camera.x,
@@ -145,11 +148,16 @@ function PainManagePage() {
       y: body.y,
       z: body.z
     })
-    var cursorCube = canvasContent.scene.getObjectByName("cursorCube")
-    cursorCube.position.set(cursorCubePosition.x,cursorCubePosition.y,cursorCubePosition.z)
-    
+
     setTimeout(()=>{
       lightList.forEach(ele => {
+        var geometry = new THREE.BoxGeometry( 0.1,0.1,0.1 );
+        var material = new THREE.MeshNormalMaterial();
+        var cursorCube = new THREE.Mesh( geometry, material );
+        cursorCube.name = "cursorCube"
+        cursorCube.position.set(ele.target.x, ele.target.y, ele.target.z)
+        canvasContent.scene.add(cursorCube)
+
         var spotLight = new THREE.SpotLight( 0xff0000, 0, ele.distance, ele.angle)
         spotLight.name = "spotLight"
         spotLight.target = cursorCube
@@ -166,38 +174,56 @@ function PainManagePage() {
     switch(pain_Part){
       case '下顎':
         setCanvasObjectsAttribute(
-            {x:0,y:1,z:3}, {x:0,y:-0.1,z:0},{x:0,y:1,z:.5},
-            [{intensity:.8,distance:1,angle:.5,x:.5,y:.9,z:.7},{intensity:.8,distance:1,angle:.5,x:-.5,y:.9,z:.7}]
+            {x:0,y:1,z:3}, {x:0,y:-0.1,z:0},
+            [
+              {intensity:.8,distance:1,angle:.5,x:.5,y:.9,z:.7,target:{x:0,y:1,z:.5}},
+              {intensity:.8,distance:1,angle:.5,x:-.5,y:.9,z:.7,target:{x:0,y:1,z:.5}},
+            ]
           )
         break
       case '肩胛骨':
         setCanvasObjectsAttribute(
-            {x:0,y:1,z:3}, {x:0,y:0.5,z:0},{x:0,y:0,z:.2},
-            [{intensity:.8,distance:2,angle:.3,x:1,y:1.8,z:.2},{intensity:.8,distance:2,angle:.3,x:-1,y:1.8,z:.2}]
+            {x:0,y:1,z:3}, {x:0,y:0.5,z:0},
+            [
+              {intensity:.8,distance:2,angle:.3,x:1,y:1.8,z:.2,target:{x:0,y:0,z:.2}},
+              {intensity:.8,distance:2,angle:.3,x:-1,y:1.8,z:.2,target:{x:0,y:0,z:.2}},
+            ]
           )
         break
       case '肩膀':
         setCanvasObjectsAttribute(
-            {x:0,y:1,z:3}, {x:0,y:0.7,z:0},{x:0,y:.5,z:.2},
-            [{intensity:.8,distance:2,angle:.3,x:1.5,y:1.7,z:.3},{intensity:.8,distance:2,angle:.3,x:-1.5,y:1.7,z:.3}]
+            {x:0,y:1,z:3}, {x:0,y:0.7,z:0},
+            [
+              {intensity:.8,distance:2,angle:.3,x:1.5,y:1.7,z:.3,target:{x:0,y:.5,z:.2}},
+              {intensity:.8,distance:2,angle:.3,x:-1.5,y:1.7,z:.3,target:{x:0,y:.5,z:.2}},
+            ]
           )
         break
       case '胸部':
         setCanvasObjectsAttribute(
-            {x:0,y:1,z:3}, {x:0,y:0.9,z:0},{x:0,y:1,z:.2},
-            [{intensity:.8,distance:2,angle:.3,x:.8,y:1,z:1.2},{intensity:.8,distance:2,angle:.3,x:-.8,y:1,z:1.2}]
+            {x:0,y:1,z:3}, {x:0,y:0.9,z:0},
+            [
+              {intensity:1,distance:2,angle:.3,x:1,y:1.2,z:1.8,target:{x:0,y:.8,z:.2}},
+              {intensity:1,distance:2,angle:.3,x:-1,y:1.2,z:1.8,target:{x:0,y:.8,z:.2}},
+            ]
           )
         break
       case '腹部':
         setCanvasObjectsAttribute(
             {x:0,y:1,z:3}, {x:0,y:2,z:-1},
-            // [{intensity:.5,distance:1,angle:.5,x:.5,y:.8,z:.7}]
+            [
+              {intensity:1.2,distance:2,angle:.3,x:1,y:1.2,z:1.2,target:{x:0,y:1,z:-.5}},
+              {intensity:1.2,distance:2,angle:.3,x:-1,y:1.2,z:1.2,target:{x:0,y:1,z:-.5}},
+            ]
           )
         break
       case '手肘':
         setCanvasObjectsAttribute(
             {x:0,y:1,z:3}, {x:0,y:2,z:-1.5},
-            // [{intensity:.5,distance:1,angle:.5,x:.5,y:.8,z:.7}]
+            [
+              {intensity:1.2,distance:2,angle:.3,x:1.5,y:1.5,z:0,target:{x:1.3,y:1.3,z:-1.5}},
+              {intensity:1.2,distance:2,angle:.3,x:-1.5,y:1.5,z:0,target:{x:-1.3,y:1.3,z:-1.5}},
+            ]
           )
         break
       case '手腕':
@@ -430,11 +456,6 @@ function CanvasInit(){
     const controls = new OrbitControls(camera, renderer.domElement);
     controls.enabled = false;
     controls.update();
-    const geometry = new THREE.BoxGeometry( 0.1,0.1,0.1 );
-    const material = new THREE.MeshNormalMaterial();
-    const cursorCube = new THREE.Mesh( geometry, material );
-    cursorCube.name = "cursorCube"
-    scene.add(cursorCube)
 
     const loader = new GLTFLoader();
     var body;

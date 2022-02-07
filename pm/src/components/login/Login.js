@@ -25,6 +25,7 @@ function Login(props) {
         </div>
         <div className="login_button">
             <button onClick={ submit }>完成送出</button>
+            <button onClick={ submit }>取消登入</button>
         </div>
         <div className="notice">
             <table>
