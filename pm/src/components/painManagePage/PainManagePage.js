@@ -229,55 +229,78 @@ function PainManagePage() {
       case '手腕':
         setCanvasObjectsAttribute(
             {x:0,y:1,z:3}, {x:0,y:2.5,z:-2.5},
-            // [{intensity:.5,distance:1,angle:.5,x:.5,y:.8,z:.7}]
+            [
+              {intensity:1.2,distance:2,angle:.3,x:1.8,y:1,z:-1,target:{x:1.9,y:1,z:-1.8}},
+              {intensity:1.2,distance:2,angle:.3,x:-1.8,y:1,z:-1,target:{x:-1.9,y:1,z:-1.8}},
+            ]
           )
         break
       case '手掌':
         setCanvasObjectsAttribute(
             {x:0,y:1,z:3}, {x:0,y:3,z:-2.5},
-            // [{intensity:.5,distance:1,angle:.5,x:.5,y:.8,z:.7}]
+            [
+              {intensity:1.2,distance:2,angle:.5,x:1.8,y:1.2,z:-.8,target:{x:1.8,y:1.1,z:-1.3}},
+              {intensity:1.2,distance:2,angle:.5,x:-1.8,y:1.2,z:-.8,target:{x:-1.8,y:1.1,z:-1.3}},
+            ]
           )
         break
       case '臀部':
         setCanvasObjectsAttribute(
             {x:0,y:1,z:3}, {x:0,y:2.8,z:-1},
-            // [{intensity:.5,distance:1,angle:.5,x:.5,y:.8,z:.7}]
+            [
+              {intensity:1.5,distance:2,angle:.5,x:0,y:1,z:1,target:{x:0,y:1,z:0}},
+            ]
           )
         break
       case '膝蓋':
         setCanvasObjectsAttribute(
             {x:0,y:1,z:3}, {x:0,y:4.5,z:-1},
-            // [{intensity:.5,distance:1,angle:.5,x:.5,y:.8,z:.7}]
+            [
+              {intensity:1.5,distance:2,angle:.3,x:.5,y:1,z:.5,target:{x:.5,y:1,z:0}},
+              {intensity:1.5,distance:2,angle:.3,x:-.5,y:1,z:.5,target:{x:-.5,y:1,z:0}},
+            ]
           )
         break
       case '小腿':
         setCanvasObjectsAttribute(
             {x:0,y:1,z:3}, {x:0,y:5.3,z:-1},
-            // [{intensity:.5,distance:1,angle:.5,x:.5,y:.8,z:.7}]
+            [
+              {intensity:1.5,distance:2,angle:.35,x:.5,y:1.2,z:.5,target:{x:.5,y:1.2,z:0}},
+              {intensity:1.5,distance:2,angle:.35,x:-.5,y:1.2,z:.5,target:{x:-.5,y:1.2,z:0}},
+            ]
           )
         break
       case '腳踝':
         setCanvasObjectsAttribute(
             {x:0,y:1,z:3}, {x:0,y:6,z:-1},
-            // [{intensity:.5,distance:1,angle:.5,x:.5,y:.8,z:.7}]
+            [
+              {intensity:1.5,distance:2,angle:.2,x:.5,y:1.15,z:.5,target:{x:.55,y:1.15,z:0}},
+              {intensity:1.5,distance:2,angle:.2,x:-.5,y:1.15,z:.5,target:{x:-.55,y:1.15,z:0}},
+            ]
           )
         break      
       case '腳跟':
         setCanvasObjectsAttribute(
             {x:0,y:1,z:3}, {x:0,y:6,z:-1},
-            // [{intensity:.5,distance:1,angle:.5,x:.5,y:.8,z:.7}]
+            [
+              {intensity:1.5,distance:2,angle:.5,x:.5,y:.7,z:-.5,target:{x:.55,y:.7,z:-1}},
+              {intensity:1.5,distance:2,angle:.5,x:-.5,y:.7,z:-.5,target:{x:-.55,y:.7,z:-1}},
+            ]
           )
         break      
       case '腳掌':
         setCanvasObjectsAttribute(
             {x:0,y:1,z:3}, {x:0,y:6,z:-1},
-            // [{intensity:.5,distance:1,angle:.5,x:.5,y:.8,z:.7}]
+            [
+              {intensity:1.5,distance:2,angle:.4,x:.5,y:1.2,z:.6,target:{x:.6,y:.9,z:.2}},
+              {intensity:1.5,distance:2,angle:.4,x:-.5,y:1.2,z:.6,target:{x:-.6,y:.9,z:.2}},
+            ]
           )
         break      
       default:
         setCanvasObjectsAttribute(
             {x:3,y:2,z:5}, {x:0,y:1.2,z:0},
-            // [{intensity:.5,distance:1,angle:.5,x:.5,y:.8,z:.7}]
+            []
           )
         break
     }
