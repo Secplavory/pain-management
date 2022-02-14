@@ -454,7 +454,7 @@ function PainManagePage() {
         </div>
       </footer>
       <ExportPage class={ exportPageClassName } setExportPageClassName={ changeExportPageClassName } />
-      <RecordPage record={record} updateRecordState={updateRecordState} setCanvasObjects={setCanvasObjects} />
+      <RecordPage record={record} updateRecordState={updateRecordState} setCanvasObjects={setCanvasObjects} showRecordMenu={showRecordMenu} />
     </div>
   );
   

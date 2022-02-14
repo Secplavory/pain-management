@@ -13,7 +13,7 @@ import record_img from '../../../asserts/PainManagePage/record.jpg'
 import record_unactive from '../../../asserts/PainManagePage/record_unactive.png'
 // import record_active from '../../../asserts/PainManagePage/record_active.jpg'
 import icon_clock from '../../../asserts/PainManagePage/icon-clock.jpg'
-// import data  
+// import data
 import record_data from '../../../data/record_data.json'
 
 
@@ -223,8 +223,8 @@ function RecordPage(props) {
           </div>
         </div>
         <div className="record_buttons">
-          <button onClick={()=>controlRecord("")}>完成送出</button>
-          <button onClick={()=>controlRecord("")}>取消</button>
+          <button onClick={()=>{controlRecord(""); props.setCanvasObjects("全身"); props.showRecordMenu(" show")}}>完成送出</button>
+          <button onClick={()=>{controlRecord(""); props.setCanvasObjects("全身"); props.showRecordMenu(" show")}}>取消</button>
         </div>
       </div>
     </div>
