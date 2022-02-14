@@ -13,6 +13,9 @@ import record_img from '../../../asserts/PainManagePage/record.jpg'
 import record_unactive from '../../../asserts/PainManagePage/record_unactive.png'
 // import record_active from '../../../asserts/PainManagePage/record_active.jpg'
 import icon_clock from '../../../asserts/PainManagePage/icon-clock.jpg'
+// import data  
+import record_data from '../../../data/record_data.json'
+
 
 function RecordPage(props) {
   const [recordClassName,setRecordClassName] = useState("record");
@@ -42,6 +45,7 @@ function RecordPage(props) {
   }
   const getPainPart = (e) =>{
     var signPainPart = document.getElementById('signPainPart').value;
+    props.setCanvasObjects(signPainPart)
     setPainPart(signPainPart);
   }
   const natureClick = (e) =>{
@@ -96,13 +100,10 @@ function RecordPage(props) {
           </div>
           <div className="selector">
             <select id="signPainPart" value="none" name="signPainPart" onChange={getPainPart}>
-              <option value="none" defaultValue="selected" disabled hidden></option>
-              <option value="左大腿">左大腿</option>
-              <option value="右大腿">右大腿</option>
-              <option value="左小腿">左小腿</option>
-              <option value="右小腿">右小腿</option>
-              <option value="左手臂">左手臂</option>
-              <option value="右手臂">右手臂</option>
+              <option value="全身">全身</option>
+              {Object.keys(record_data).map((value, index)=>{
+                return <option key={index} value={value}>{value}</option>
+              })}
             </select>
           </div>
         </div>

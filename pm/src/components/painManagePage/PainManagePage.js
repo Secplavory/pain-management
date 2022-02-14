@@ -18,6 +18,7 @@ import record_data from '../../data/record_data.json'
 
 var showRecord = true;
 var canvasContent;
+var DelayTimer;
 
 function PainManagePage() {
   canvasContent = CanvasInit();
@@ -128,6 +129,8 @@ function PainManagePage() {
   }
   function setCanvasObjects(pain_Part){
 
+    clearTimeout(DelayTimer)
+
     while(canvasContent.scene.getObjectByName("spotLight")){
       canvasContent.scene.remove(canvasContent.scene.getObjectByName("spotLight"))
     }
@@ -136,39 +139,39 @@ function PainManagePage() {
     }
 
     var setCanvasObjectsAttribute = (camera, body, lightList=[]) => {
-    gsap.to(canvasContent.camera.position, {
-      duration: 1,
-      x: camera.x,
-      y: camera.y,
-      z: camera.z
-    })
-    gsap.to(canvasContent.scene.getObjectByName("body").position, {
-      duration: 1,
-      x: body.x,
-      y: body.y,
-      z: body.z
-    })
+      gsap.to(canvasContent.camera.position, {
+        duration: 1,
+        x: camera.x,
+        y: camera.y,
+        z: camera.z
+      })
+      gsap.to(canvasContent.scene.getObjectByName("body").position, {
+        duration: 1,
+        x: body.x,
+        y: body.y,
+        z: body.z
+      })
 
-    setTimeout(()=>{
-      lightList.forEach(ele => {
-        var geometry = new THREE.BoxGeometry( 0.1,0.1,0.1 );
-        var material = new THREE.MeshNormalMaterial();
-        var cursorCube = new THREE.Mesh( geometry, material );
-        cursorCube.name = "cursorCube"
-        cursorCube.position.set(ele.target.x, ele.target.y, ele.target.z)
-        canvasContent.scene.add(cursorCube)
+      DelayTimer = setTimeout(()=>{
+        lightList.forEach(ele => {
+          var geometry = new THREE.BoxGeometry( 0,0,0 );
+          var material = new THREE.MeshNormalMaterial();
+          var cursorCube = new THREE.Mesh( geometry, material );
+          cursorCube.name = "cursorCube"
+          cursorCube.position.set(ele.target.x, ele.target.y, ele.target.z)
+          canvasContent.scene.add(cursorCube)
 
-        var spotLight = new THREE.SpotLight( 0xff0000, 0, ele.distance, ele.angle)
-        spotLight.name = "spotLight"
-        spotLight.target = cursorCube
-        spotLight.position.set(ele.x, ele.y, ele.z)
-        canvasContent.scene.add(spotLight)
-        gsap.to(spotLight,{
-          duration:.5,
-          intensity: ele.intensity
-        })
-      });
-    }, 1000)
+          var spotLight = new THREE.SpotLight( 0xff0000, 0, ele.distance, ele.angle)
+          spotLight.name = "spotLight"
+          spotLight.target = cursorCube
+          spotLight.position.set(ele.x, ele.y, ele.z)
+          canvasContent.scene.add(spotLight)
+          gsap.to(spotLight,{
+            duration:.5,
+            intensity: ele.intensity
+          })
+        });
+      }, 1000)
     }
 
     switch(pain_Part){
@@ -451,7 +454,7 @@ function PainManagePage() {
         </div>
       </footer>
       <ExportPage class={ exportPageClassName } setExportPageClassName={ changeExportPageClassName } />
-      <RecordPage record={record} updateRecordState={updateRecordState} />
+      <RecordPage record={record} updateRecordState={updateRecordState} setCanvasObjects={setCanvasObjects} />
     </div>
   );
   
