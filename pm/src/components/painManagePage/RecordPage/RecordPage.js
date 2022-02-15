@@ -109,7 +109,7 @@ function RecordPage(props) {
         </div>
         <div className="group_buttons">
           <button onClick={()=>controlRecord(" show")}>確認</button>
-          <button onClick={props.updateRecordState.bind(this, false)}>取消</button>
+          <button onClick={()=>{props.updateRecordState(false); props.showRecordMenu(" show"); props.setCanvasObjects("全身")}}>取消</button>
         </div>
       </div>
       <div className={recordClassName}>
